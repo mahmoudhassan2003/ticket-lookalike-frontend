@@ -64,8 +64,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				ticket: {
-					blue: '#1e40af',
-					lightBlue: '#3b82f6',
+					silver: '#9F9EA1',
+					blue: '#1EAEDB',
+					lightBlue: '#33C3F0',
+					darkOrange: '#F97316',
+					softOrange: '#FEC6A1',
 					gray: '#f3f4f6',
 					darkGray: '#4b5563'
 				}

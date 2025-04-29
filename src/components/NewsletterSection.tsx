@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 
 const NewsletterSection = () => {
   return (
-    <section className="py-12 bg-ticket-blue text-white">
+    <section className="py-12 bg-gradient-to-r from-ticket-blue to-ticket-silver text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Never Miss an Event</h2>
@@ -19,7 +19,7 @@ const NewsletterSection = () => {
               placeholder="Your email address" 
               className="bg-white/10 border-white/20 text-white placeholder:text-white/70"
             />
-            <Button className="bg-white text-ticket-blue hover:bg-gray-100">
+            <Button className="bg-ticket-darkOrange text-white hover:bg-ticket-softOrange hover:text-ticket-darkOrange">
               Subscribe
             </Button>
           </div>

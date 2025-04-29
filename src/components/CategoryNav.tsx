@@ -16,7 +16,7 @@ const categories = [
 
 const CategoryNav = () => {
   return (
-    <div className="bg-white border-b">
+    <div className="bg-ticket-silver/10 border-b border-ticket-silver/20">
       <div className="container mx-auto px-4 py-2">
         <div className="overflow-x-auto">
           <div className="flex items-center space-x-1 md:space-x-2 py-2 min-w-max">
@@ -25,7 +25,7 @@ const CategoryNav = () => {
                 key={category.name}
                 variant="ghost" 
                 size="sm"
-                className="category-button whitespace-nowrap rounded-full px-4 text-sm font-medium"
+                className="category-button whitespace-nowrap rounded-full px-4 text-sm font-medium text-ticket-blue hover:bg-ticket-blue hover:text-white"
               >
                 {category.icon && <category.icon className="mr-1 h-4 w-4" />}
                 {category.name}

@@ -15,7 +15,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-ticket-blue">Ticket<span className="text-ticket-lightBlue">Marché</span></span>
+              <span className="text-2xl font-bold text-ticket-blue">Ticket<span className="text-ticket-darkOrange">Marché</span></span>
             </a>
           </div>
           
@@ -26,7 +26,7 @@ const Navbar = () => {
               <Input 
                 type="text" 
                 placeholder="Search for events, artists, teams..." 
-                className="pl-10 pr-4 py-2 w-full rounded-full border border-gray-300 focus:border-ticket-lightBlue focus:ring-1 focus:ring-ticket-lightBlue"
+                className="pl-10 pr-4 py-2 w-full rounded-full border border-gray-300 focus:border-ticket-blue focus:ring-1 focus:ring-ticket-blue"
               />
             </div>
           </div>
