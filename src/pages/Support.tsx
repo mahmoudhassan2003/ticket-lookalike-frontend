@@ -16,7 +16,7 @@ import {
   CardTitle 
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Support as SupportIcon } from "lucide-react";
+import { HelpCircle, MessageSquare as MessageSquareIcon, Contact } from "lucide-react";
 import { Button } from '@/components/ui/button';
 
 const Support = () => {
@@ -49,7 +49,7 @@ const Support = () => {
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center text-ticket-blue">
-                      <SupportIcon className="mr-2" size={20} /> Frequently Asked Questions
+                      <HelpCircle className="mr-2" size={20} /> Frequently Asked Questions
                     </CardTitle>
                     <CardDescription>
                       Find answers to the most common questions about our services.
@@ -137,7 +137,7 @@ const Support = () => {
                     <div className="grid md:grid-cols-3 gap-4">
                       <Card className="p-4 text-center">
                         <div className="mb-3 mx-auto bg-ticket-blue/10 w-12 h-12 flex items-center justify-center rounded-full">
-                          <MessageSquare className="text-ticket-blue" size={24} />
+                          <MessageSquareIcon className="text-ticket-blue" size={24} />
                         </div>
                         <h3 className="font-semibold mb-1">Live Chat</h3>
                         <p className="text-sm text-gray-600 mb-3">Available 24/7</p>
@@ -146,7 +146,7 @@ const Support = () => {
                       
                       <Card className="p-4 text-center">
                         <div className="mb-3 mx-auto bg-ticket-blue/10 w-12 h-12 flex items-center justify-center rounded-full">
-                          <SupportIcon className="text-ticket-blue" size={24} />
+                          <HelpCircle className="text-ticket-blue" size={24} />
                         </div>
                         <h3 className="font-semibold mb-1">Call Us</h3>
                         <p className="text-sm text-gray-600 mb-3">1-800-TICKETS</p>
@@ -155,7 +155,7 @@ const Support = () => {
                       
                       <Card className="p-4 text-center">
                         <div className="mb-3 mx-auto bg-ticket-blue/10 w-12 h-12 flex items-center justify-center rounded-full">
-                          <ContactIcon className="text-ticket-blue" size={24} />
+                          <Contact className="text-ticket-blue" size={24} />
                         </div>
                         <h3 className="font-semibold mb-1">Email</h3>
                         <p className="text-sm text-gray-600 mb-3">support@ticketmarche.com</p>
