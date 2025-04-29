@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, User, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Auth from '@/components/Auth';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -37,7 +39,12 @@ const Navbar = () => {
             <a href="#" className="header-link text-sm font-medium">Sports</a>
             <a href="#" className="header-link text-sm font-medium">Theater</a>
             <a href="#" className="header-link text-sm font-medium">Festivals</a>
-            <Button variant="ghost" size="icon" className="header-link">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="header-link"
+              onClick={() => setIsAuthDialogOpen(true)}
+            >
               <User size={20} />
             </Button>
           </nav>
@@ -75,12 +82,26 @@ const Navbar = () => {
             <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Sports</a>
             <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Theater</a>
             <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Festivals</a>
-            <a href="#" className="flex items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200">
+            <a 
+              href="#" 
+              className="flex items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                setIsAuthDialogOpen(true);
+              }}
+            >
               <User size={20} className="mr-2" /> My Account
             </a>
           </div>
         </div>
       </div>
+
+      {/* Auth Dialog */}
+      <Auth 
+        isOpen={isAuthDialogOpen}
+        onClose={() => setIsAuthDialogOpen(false)}
+      />
     </header>
   );
 };
