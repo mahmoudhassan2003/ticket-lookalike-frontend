@@ -4,7 +4,7 @@ import EventCard from './EventCard';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-// Sample event data with updated images
+// Event data with high-quality images
 const upcomingEvents = [
   {
     id: "5",

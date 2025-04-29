@@ -11,14 +11,22 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
+import { Link } from 'react-router-dom';
+import { useToast } from "@/hooks/use-toast";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
   const [language, setLanguage] = useState<'en' | 'ar'>('en');
+  const { toast } = useToast();
 
   const toggleLanguage = (lang: 'en' | 'ar') => {
     setLanguage(lang);
+    toast({
+      title: lang === 'en' ? 'Language Changed' : 'تم تغيير اللغة',
+      description: lang === 'en' ? 'English is now selected.' : 'تم اختيار اللغة العربية.',
+      duration: 3000
+    });
     // In a real app, this would trigger language change throughout the application
   };
 
@@ -28,9 +36,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <span className="text-2xl font-bold text-ticket-blue">Ticket<span className="text-ticket-darkOrange">Marché</span></span>
-            </a>
+            </Link>
           </div>
           
           {/* Search bar - hidden on mobile */}
@@ -47,12 +55,12 @@ const Navbar = () => {
           
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="#" className="header-link text-sm font-medium">Concerts</a>
-            <a href="#" className="header-link text-sm font-medium">Sports</a>
-            <a href="#" className="header-link text-sm font-medium">Theater</a>
-            <a href="#" className="header-link text-sm font-medium">Festivals</a>
-            <a href="/contact" className="header-link text-sm font-medium">Contact</a>
-            <a href="/support" className="header-link text-sm font-medium">Support</a>
+            <Link to="/concerts" className="header-link text-sm font-medium">Concerts</Link>
+            <Link to="/sports" className="header-link text-sm font-medium">Sports</Link>
+            <Link to="/theater" className="header-link text-sm font-medium">Theater</Link>
+            <Link to="/festivals" className="header-link text-sm font-medium">Festivals</Link>
+            <Link to="/contact" className="header-link text-sm font-medium">Contact</Link>
+            <Link to="/support" className="header-link text-sm font-medium">Support</Link>
             
             {/* Language Dropdown */}
             <DropdownMenu>
@@ -66,7 +74,7 @@ const Navbar = () => {
                   English
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => toggleLanguage('ar')} className={language === 'ar' ? 'bg-muted' : ''}>
-                  العربية
+                  {language === 'ar' ? 'العربية' : 'العربية'}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -110,12 +118,12 @@ const Navbar = () => {
             />
           </div>
           <div className="space-y-3 pt-4">
-            <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Concerts</a>
-            <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Sports</a>
-            <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Theater</a>
-            <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Festivals</a>
-            <a href="/contact" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Contact</a>
-            <a href="/support" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Support</a>
+            <Link to="/concerts" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Concerts</Link>
+            <Link to="/sports" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Sports</Link>
+            <Link to="/theater" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Theater</Link>
+            <Link to="/festivals" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Festivals</Link>
+            <Link to="/contact" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Contact</Link>
+            <Link to="/support" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Support</Link>
             <div className="flex justify-between items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200">
               <span>Language</span>
               <div className="flex space-x-3">
@@ -129,7 +137,7 @@ const Navbar = () => {
                   onClick={() => toggleLanguage('ar')}
                   className={`px-2 py-1 rounded ${language === 'ar' ? 'bg-ticket-blue text-white' : ''}`}
                 >
-                  AR
+                  {language === 'ar' ? 'ع' : 'ع'}
                 </button>
               </div>
             </div>
