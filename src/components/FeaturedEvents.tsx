@@ -4,14 +4,14 @@ import EventCard from './EventCard';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-// Sample event data
+// Sample event data with updated images
 const featuredEvents = [
   {
     id: "1",
     title: "Taylor Swift | The Eras Tour",
     date: "Jun 12, 2025",
     location: "SoFi Stadium, Los Angeles",
-    image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Concerts",
     isFeatured: true
   },
@@ -20,7 +20,7 @@ const featuredEvents = [
     title: "NBA Finals 2025 - Home Game 1",
     date: "May 29, 2025",
     location: "TD Garden, Boston",
-    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Sports",
     isFeatured: true
   },
@@ -29,7 +29,7 @@ const featuredEvents = [
     title: "Hamilton - The Musical",
     date: "Jul 5-10, 2025",
     location: "Richard Rodgers Theatre, New York",
-    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Theater",
     isFeatured: true
   },
@@ -38,7 +38,7 @@ const featuredEvents = [
     title: "Coachella Valley Music and Arts Festival",
     date: "Apr 10-19, 2025",
     location: "Empire Polo Club, Indio",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Festivals",
     isFeatured: true
   }

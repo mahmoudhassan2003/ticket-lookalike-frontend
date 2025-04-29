@@ -2,13 +2,25 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, User, Menu, X } from "lucide-react";
+import { Search, User, Menu, X, Earth } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Auth from '@/components/Auth';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'ar'>('en');
+
+  const toggleLanguage = (lang: 'en' | 'ar') => {
+    setLanguage(lang);
+    // In a real app, this would trigger language change throughout the application
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -39,6 +51,26 @@ const Navbar = () => {
             <a href="#" className="header-link text-sm font-medium">Sports</a>
             <a href="#" className="header-link text-sm font-medium">Theater</a>
             <a href="#" className="header-link text-sm font-medium">Festivals</a>
+            <a href="/contact" className="header-link text-sm font-medium">Contact</a>
+            <a href="/support" className="header-link text-sm font-medium">Support</a>
+            
+            {/* Language Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="header-link">
+                  <Earth size={20} />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => toggleLanguage('en')} className={language === 'en' ? 'bg-muted' : ''}>
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => toggleLanguage('ar')} className={language === 'ar' ? 'bg-muted' : ''}>
+                  العربية
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
             <Button 
               variant="ghost" 
               size="icon" 
@@ -82,6 +114,25 @@ const Navbar = () => {
             <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Sports</a>
             <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Theater</a>
             <a href="#" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Festivals</a>
+            <a href="/contact" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Contact</a>
+            <a href="/support" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Support</a>
+            <div className="flex justify-between items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200">
+              <span>Language</span>
+              <div className="flex space-x-3">
+                <button 
+                  onClick={() => toggleLanguage('en')}
+                  className={`px-2 py-1 rounded ${language === 'en' ? 'bg-ticket-blue text-white' : ''}`}
+                >
+                  EN
+                </button>
+                <button 
+                  onClick={() => toggleLanguage('ar')}
+                  className={`px-2 py-1 rounded ${language === 'ar' ? 'bg-ticket-blue text-white' : ''}`}
+                >
+                  AR
+                </button>
+              </div>
+            </div>
             <a 
               href="#" 
               className="flex items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
