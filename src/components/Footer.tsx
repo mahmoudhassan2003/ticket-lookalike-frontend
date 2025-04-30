@@ -26,7 +26,14 @@ const Footer = () => {
       shipping: "Shipping & Delivery",
       returns: "Returns & Exchanges",
       faqs: "FAQs",
-      contactUs: "Contact Us"
+      contactUs: "Contact Us",
+      // Add category names
+      concerts: "Concerts",
+      sports: "Sports",
+      theater: "Theater",
+      festivals: "Festivals",
+      comedy: "Comedy",
+      family: "Family"
     },
     ar: {
       about: "من نحن",
@@ -45,7 +52,14 @@ const Footer = () => {
       shipping: "الشحن والتوصيل",
       returns: "الإرجاع والاستبدال",
       faqs: "الأسئلة المتكررة",
-      contactUs: "اتصل بنا"
+      contactUs: "اتصل بنا",
+      // Add category names in Arabic
+      concerts: "حفلات موسيقية",
+      sports: "رياضة",
+      theater: "مسرح",
+      festivals: "مهرجانات",
+      comedy: "كوميديا",
+      family: "عائلي"
     }
   };
   
@@ -82,12 +96,12 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4 text-white">{t.quickLinks}</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/concerts" className="hover:text-white">{translations.en.concerts}</Link></li>
-              <li><Link to="/sports" className="hover:text-white">{translations.en.sports}</Link></li>
-              <li><Link to="/theater" className="hover:text-white">{translations.en.theater}</Link></li>
-              <li><Link to="/festivals" className="hover:text-white">{translations.en.festivals}</Link></li>
-              <li><Link to="/comedy" className="hover:text-white">{translations.en.comedy}</Link></li>
-              <li><Link to="/family" className="hover:text-white">{translations.en.family}</Link></li>
+              <li><Link to="/concerts" className="hover:text-white">{t.concerts}</Link></li>
+              <li><Link to="/sports" className="hover:text-white">{t.sports}</Link></li>
+              <li><Link to="/theater" className="hover:text-white">{t.theater}</Link></li>
+              <li><Link to="/festivals" className="hover:text-white">{t.festivals}</Link></li>
+              <li><Link to="/comedy" className="hover:text-white">{t.comedy}</Link></li>
+              <li><Link to="/family" className="hover:text-white">{t.family}</Link></li>
             </ul>
           </div>
           
