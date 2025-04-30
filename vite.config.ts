@@ -11,9 +11,12 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+ 
     mode === 'development' &&
     componentTagger(),
-  ].filter(Boolean),
+  ].
+       base: process.env.VIT_BASE_PATH||"/ticket-lookalike-frontend",
+    filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
