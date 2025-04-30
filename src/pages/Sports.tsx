@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Football, Calendar } from "lucide-react";
+import { Trophy, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const sportsEvents = [
@@ -64,7 +64,7 @@ const Sports = () => {
         <section className="bg-gradient-to-r from-ticket-blue to-green-600 py-12 text-white">
           <div className="container mx-auto px-4 text-center">
             <div className="flex items-center justify-center mb-4">
-              <Football size={36} className="mr-2" />
+              <Trophy size={36} className="mr-2" />
               <h1 className="text-3xl md:text-4xl font-bold">Sports Events</h1>
             </div>
             <p className="text-lg max-w-2xl mx-auto">
