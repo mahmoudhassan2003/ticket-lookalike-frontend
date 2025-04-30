@@ -11,6 +11,10 @@ import Concerts from "./pages/Concerts";
 import Sports from "./pages/Sports";
 import Theater from "./pages/Theater";
 import Festivals from "./pages/Festivals";
+import Comedy from "./pages/Comedy";
+import Family from "./pages/Family";
+import NearMe from "./pages/NearMe";
+import EventDetail from "./pages/EventDetail";
 import NotFound from "./pages/NotFound";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -31,6 +35,10 @@ const App = () => (
             <Route path="/sports" element={<Sports />} />
             <Route path="/theater" element={<Theater />} />
             <Route path="/festivals" element={<Festivals />} />
+            <Route path="/comedy" element={<Comedy />} />
+            <Route path="/family" element={<Family />} />
+            <Route path="/near-me" element={<NearMe />} />
+            <Route path="/event/:eventId" element={<EventDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

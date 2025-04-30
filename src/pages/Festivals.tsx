@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const festivalEvents = [
   {
@@ -97,8 +98,8 @@ const Festivals = () => {
                     <p className="text-sm text-gray-500 mb-3">{event.location}</p>
                     <div className="flex justify-between items-center mt-2">
                       <span className="text-sm font-medium text-ticket-blue">From $120</span>
-                      <Button size="sm" variant="outline" className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
-                        View Tickets
+                      <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
+                        <Link to={`/event/${event.id}`}>Book Tickets</Link>
                       </Button>
                     </div>
                   </CardContent>

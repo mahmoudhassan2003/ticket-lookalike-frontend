@@ -5,57 +5,62 @@ import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar } from "lucide-react";
+import { Smile, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Theater as TheaterIcon } from "lucide-react";
 
-const theaterEvents = [
+const comedyEvents = [
   {
-    id: "t1",
-    title: "Hamilton",
-    date: "Jun 15-30, 2025",
-    location: "Victoria Palace Theatre, London",
-    image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    id: "c1",
+    title: "Kevin Hart - Comedy Tour",
+    date: "Sep 3, 2025",
+    location: "Madison Square Garden, New York",
+    image: "/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png",
+    price: "$85"
   },
   {
-    id: "t2",
-    title: "The Phantom of the Opera",
-    date: "Jul 5-20, 2025",
-    location: "Her Majesty's Theatre, London",
-    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    id: "c2",
+    title: "Dave Chappelle Live",
+    date: "Oct 15, 2025",
+    location: "The O2, London",
+    image: "https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    price: "$95"
   },
   {
-    id: "t3",
-    title: "Les Misérables",
-    date: "Aug 10-25, 2025",
-    location: "Sondheim Theatre, London",
-    image: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    id: "c3",
+    title: "Trevor Noah World Tour",
+    date: "Nov 8, 2025",
+    location: "Sydney Opera House, Australia",
+    image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    price: "$75"
   },
   {
-    id: "t4",
-    title: "The Lion King",
-    date: "Sep 5-20, 2025",
-    location: "Lyceum Theatre, London",
-    image: "https://images.unsplash.com/photo-1583004231508-e462638c634a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    id: "c4",
+    title: "John Mulaney - From Scratch",
+    date: "Dec 1, 2025",
+    location: "Radio City Music Hall, New York",
+    image: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    price: "$80"
   },
   {
-    id: "t5",
-    title: "Wicked",
-    date: "Oct 10-25, 2025",
-    location: "Apollo Victoria Theatre, London",
-    image: "https://images.unsplash.com/photo-1568085874298-f67cb4fbd92f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    id: "c5",
+    title: "Ricky Gervais: SuperNature",
+    date: "Jan 20, 2026",
+    location: "Royal Albert Hall, London",
+    image: "https://images.unsplash.com/photo-1523251343397-9225e4cb6319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    price: "$90"
   },
   {
-    id: "t6",
-    title: "Matilda The Musical",
-    date: "Nov 5-20, 2025",
-    location: "Cambridge Theatre, London",
-    image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    id: "c6",
+    title: "Amy Schumer Live",
+    date: "Feb 14, 2026",
+    location: "Hollywood Bowl, Los Angeles",
+    image: "https://images.unsplash.com/photo-1508252592163-5d3c3c559269?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    price: "$70"
   }
 ];
 
-const Theater = () => {
+const Comedy = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -63,24 +68,24 @@ const Theater = () => {
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-ticket-darkOrange to-red-500 py-12 text-white">
+        <section className="bg-gradient-to-r from-yellow-500 to-orange-500 py-12 text-white">
           <div className="container mx-auto px-4 text-center">
             <div className="flex items-center justify-center mb-4">
-              <TheaterIcon size={36} className="mr-2" />
-              <h1 className="text-3xl md:text-4xl font-bold">Theater</h1>
+              <Smile size={36} className="mr-2" />
+              <h1 className="text-3xl md:text-4xl font-bold">Comedy Shows</h1>
             </div>
             <p className="text-lg max-w-2xl mx-auto">
-              Experience the magic of live performances from award-winning shows and productions.
+              Laugh out loud with the best comedians from around the world.
             </p>
           </div>
         </section>
 
-        {/* Theater Events List */}
+        {/* Comedy Events List */}
         <section className="py-12">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-6">Upcoming Theater Shows</h2>
+            <h2 className="text-2xl font-bold mb-6">Upcoming Comedy Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {theaterEvents.map((event) => (
+              {comedyEvents.map((event) => (
                 <Card key={event.id} className="h-full hover:shadow-lg transition-shadow">
                   <div className="relative h-48 overflow-hidden">
                     <img 
@@ -90,7 +95,7 @@ const Theater = () => {
                     />
                   </div>
                   <CardContent className="p-4">
-                    <Badge variant="outline" className="mb-2">Theater</Badge>
+                    <Badge variant="outline" className="mb-2">Comedy</Badge>
                     <h3 className="font-semibold text-lg mb-1">{event.title}</h3>
                     <div className="flex items-center text-sm text-gray-500 mb-1">
                       <Calendar size={14} className="mr-1" />
@@ -98,7 +103,7 @@ const Theater = () => {
                     </div>
                     <p className="text-sm text-gray-500 mb-3">{event.location}</p>
                     <div className="flex justify-between items-center mt-2">
-                      <span className="text-sm font-medium text-ticket-blue">From $55</span>
+                      <span className="text-sm font-medium text-ticket-blue">From {event.price}</span>
                       <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
                         <Link to={`/event/${event.id}`}>Book Tickets</Link>
                       </Button>
@@ -116,4 +121,4 @@ const Theater = () => {
   );
 };
 
-export default Theater;
+export default Comedy;
