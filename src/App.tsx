@@ -29,7 +29,7 @@ import Shipping from "./pages/Shipping";
 import Returns from "./pages/Returns";
 import FAQ from "./pages/FAQ";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import { CartProvider } from "./contexts/CartProvider";
+import { CartProvider, useCart } from "./contexts/CartContext";
 import { WishlistProvider } from "./contexts/WishlistContext";
 import { SearchProvider } from "./contexts/SearchContext";
 
