@@ -14,14 +14,18 @@ import {
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 import { LanguageContext } from "../contexts/LanguageContext";
+import Cart from './Cart';
+import Wishlist from './Wishlist';
+import { useSearch } from "@/contexts/SearchContext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
   const { language, setLanguage } = useContext(LanguageContext);
   const { toast } = useToast();
-  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { searchQuery, setSearchQuery, performSearch } = useSearch();
+  const isRTL = language === 'ar';
 
   const toggleLanguage = (lang: 'en' | 'ar') => {
     setLanguage(lang);
@@ -36,15 +40,7 @@ const Navbar = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // In a real app, this would navigate to search results
-      toast({
-        title: language === 'ar' ? 'جاري البحث...' : 'Searching...',
-        description: language === 'ar' ? `البحث عن: ${searchQuery}` : `Search query: ${searchQuery}`,
-        duration: 3000
-      });
-      // Navigate to home for now
-      navigate('/');
-      setSearchQuery("");
+      performSearch(searchQuery);
     }
   };
 
@@ -84,7 +80,6 @@ const Navbar = () => {
   };
 
   const t = translations[language];
-  const isRTL = language === 'ar';
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm" dir={isRTL ? "rtl" : "ltr"}>
@@ -93,14 +88,14 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <div className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
+              <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
                 <img 
                   src="/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png" 
                   alt="MarketIX Logo" 
                   className="h-full w-full object-cover" 
                 />
               </div>
-              <span className="text-lg font-bold ml-2">MarketIX</span>
+              <span className="text-xl font-bold ml-2">MarketIX</span>
             </Link>
           </div>
           
@@ -146,6 +141,13 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
             
+            {/* Wishlist */}
+            <Wishlist />
+            
+            {/* Cart */}
+            <Cart />
+            
+            {/* User Profile */}
             <Button 
               variant="ghost" 
               size="icon" 

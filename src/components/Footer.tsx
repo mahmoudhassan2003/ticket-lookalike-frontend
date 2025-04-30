@@ -1,16 +1,64 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { LanguageContext } from "../contexts/LanguageContext";
 
 const Footer = () => {
+  const { language } = useContext(LanguageContext);
+  const isRTL = language === 'ar';
+  
+  const translations = {
+    en: {
+      about: "About Us",
+      quickLinks: "Quick Links",
+      customerService: "Customer Service",
+      rights: "All rights reserved.",
+      description: "Your trusted source for tickets to concerts, sports, theater, comedy, and more events around the world.",
+      companyInfo: "Company Info",
+      careers: "Careers",
+      press: "Press",
+      privacyPolicy: "Privacy Policy",
+      termsOfService: "Terms of Service",
+      affiliateProgram: "Affiliate Program",
+      myAccount: "My Account",
+      orderStatus: "Order Status",
+      shipping: "Shipping & Delivery",
+      returns: "Returns & Exchanges",
+      faqs: "FAQs",
+      contactUs: "Contact Us"
+    },
+    ar: {
+      about: "من نحن",
+      quickLinks: "روابط سريعة",
+      customerService: "خدمة العملاء",
+      rights: "جميع الحقوق محفوظة.",
+      description: "مصدرك الموثوق للحصول على تذاكر الحفلات الموسيقية والرياضة والمسرح والكوميديا والمزيد من الفعاليات حول العالم.",
+      companyInfo: "معلومات الشركة",
+      careers: "وظائف",
+      press: "صحافة",
+      privacyPolicy: "سياسة الخصوصية",
+      termsOfService: "شروط الخدمة",
+      affiliateProgram: "برنامج الشراكة",
+      myAccount: "حسابي",
+      orderStatus: "حالة الطلب",
+      shipping: "الشحن والتوصيل",
+      returns: "الإرجاع والاستبدال",
+      faqs: "الأسئلة المتكررة",
+      contactUs: "اتصل بنا"
+    }
+  };
+  
+  const t = translations[language];
+  
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 text-gray-300" dir={isRTL ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">TicketMarché</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">MarketIX</h3>
             <p className="text-sm mb-4">
-              Your trusted source for tickets to concerts, sports, theater, comedy, and more events around the world.
+              {t.description}
             </p>
             <div className="flex space-x-4">
               <Button size="sm" variant="ghost" className="rounded-full p-2">
@@ -32,44 +80,44 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">{t.quickLinks}</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white">Concerts</a></li>
-              <li><a href="#" className="hover:text-white">Sports</a></li>
-              <li><a href="#" className="hover:text-white">Theater</a></li>
-              <li><a href="#" className="hover:text-white">Festivals</a></li>
-              <li><a href="#" className="hover:text-white">Comedy</a></li>
-              <li><a href="#" className="hover:text-white">Family Events</a></li>
+              <li><Link to="/concerts" className="hover:text-white">{translations.en.concerts}</Link></li>
+              <li><Link to="/sports" className="hover:text-white">{translations.en.sports}</Link></li>
+              <li><Link to="/theater" className="hover:text-white">{translations.en.theater}</Link></li>
+              <li><Link to="/festivals" className="hover:text-white">{translations.en.festivals}</Link></li>
+              <li><Link to="/comedy" className="hover:text-white">{translations.en.comedy}</Link></li>
+              <li><Link to="/family" className="hover:text-white">{translations.en.family}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">Customer Service</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">{t.customerService}</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white">My Account</a></li>
-              <li><a href="#" className="hover:text-white">Order Status</a></li>
-              <li><a href="#" className="hover:text-white">Shipping & Delivery</a></li>
-              <li><a href="#" className="hover:text-white">Returns & Exchanges</a></li>
-              <li><a href="#" className="hover:text-white">FAQs</a></li>
-              <li><a href="#" className="hover:text-white">Contact Us</a></li>
+              <li><Link to="/account" className="hover:text-white">{t.myAccount}</Link></li>
+              <li><Link to="/order-status" className="hover:text-white">{t.orderStatus}</Link></li>
+              <li><Link to="/shipping" className="hover:text-white">{t.shipping}</Link></li>
+              <li><Link to="/returns" className="hover:text-white">{t.returns}</Link></li>
+              <li><Link to="/faq" className="hover:text-white">{t.faqs}</Link></li>
+              <li><Link to="/contact" className="hover:text-white">{t.contactUs}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">About Us</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">{t.about}</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-white">Company Info</a></li>
-              <li><a href="#" className="hover:text-white">Careers</a></li>
-              <li><a href="#" className="hover:text-white">Press</a></li>
-              <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white">Affiliate Program</a></li>
+              <li><Link to="/about" className="hover:text-white">{t.companyInfo}</Link></li>
+              <li><Link to="/careers" className="hover:text-white">{t.careers}</Link></li>
+              <li><Link to="/press" className="hover:text-white">{t.press}</Link></li>
+              <li><Link to="/privacy" className="hover:text-white">{t.privacyPolicy}</Link></li>
+              <li><Link to="/terms" className="hover:text-white">{t.termsOfService}</Link></li>
+              <li><Link to="/affiliate" className="hover:text-white">{t.affiliateProgram}</Link></li>
             </ul>
           </div>
         </div>
         
         <div className="mt-12 pt-6 border-t border-gray-800 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} TicketMarché. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} MarketIX. {t.rights}</p>
         </div>
       </div>
     </footer>

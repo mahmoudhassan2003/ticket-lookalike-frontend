@@ -10,6 +10,8 @@ import { useToast } from "@/hooks/use-toast";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 
 const allEvents = [
   // Concerts
@@ -68,7 +70,7 @@ const allEvents = [
   },
   // Comedy
   {
-    id: "c1",
+    id: "c2",
     title: "Kevin Hart - Comedy Tour",
     description: "Join Kevin Hart for a night of laughter as he brings his signature comedy style to the stage with all-new material and hilarious insights.",
     date: "Sep 3, 2025",
@@ -104,7 +106,7 @@ const allEvents = [
   },
   // Family
   {
-    id: "f1",
+    id: "f2",
     title: "Disney on Ice",
     description: "A magical experience for the whole family featuring beloved Disney characters performing amazing ice skating routines to your favorite Disney songs.",
     date: "Dec 10-15, 2025",
@@ -144,12 +146,15 @@ const EventDetail = () => {
   const { eventId } = useParams();
   const { toast } = useToast();
   const { language } = useContext(LanguageContext);
+  const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const isRTL = language === 'ar';
   const [quantity, setQuantity] = useState(1);
   const [selectedTicketType, setSelectedTicketType] = useState(0);
 
   // Find the event by ID
   const event = allEvents.find(e => e.id === eventId) || allEvents[0];
+  const eventInWishlist = isInWishlist(event.id);
   
   const translations = {
     en: {
@@ -161,10 +166,11 @@ const EventDetail = () => {
       backToEvents: "Back to Events",
       shareEvent: "Share Event",
       addToWishlist: "Add to Wishlist",
+      removeFromWishlist: "Remove from Wishlist",
       selectTickets: "Select Tickets",
       quantity: "Quantity",
       totalPrice: "Total Price",
-      proceedToCheckout: "Proceed to Checkout",
+      proceedToCheckout: "Add to Cart",
       categoryLabel: "Event Type",
       ticketsAdded: "Tickets added to cart!",
       ticketsAddedDesc: "You can proceed to checkout now.",
@@ -178,10 +184,11 @@ const EventDetail = () => {
       backToEvents: "العودة إلى الفعاليات",
       shareEvent: "مشاركة الحدث",
       addToWishlist: "أضف إلى المفضلة",
+      removeFromWishlist: "إزالة من المفضلة",
       selectTickets: "اختر التذاكر",
       quantity: "الكمية",
       totalPrice: "السعر الإجمالي",
-      proceedToCheckout: "الانتقال إلى الدفع",
+      proceedToCheckout: "أضف إلى العربة",
       categoryLabel: "نوع الحدث",
       ticketsAdded: "تمت إضافة التذاكر إلى سلة التسوق!",
       ticketsAddedDesc: "يمكنك المتابعة إلى الدفع الآن.",
@@ -191,15 +198,35 @@ const EventDetail = () => {
   const t = translations[language];
   
   const handleBooking = () => {
-    toast({
-      title: t.ticketsAdded,
-      description: t.ticketsAddedDesc,
-      duration: 5000,
+    addToCart({
+      id: event.id,
+      title: event.title,
+      quantity: quantity,
+      price: event.ticketLevels[selectedTicketType].price,
+      ticketType: event.ticketLevels[selectedTicketType].name,
+      image: event.image,
+      date: event.date
     });
   };
   
   const calculateTotal = () => {
     return (event.ticketLevels[selectedTicketType].price * quantity).toFixed(2);
+  };
+
+  const toggleWishlist = () => {
+    if (eventInWishlist) {
+      removeFromWishlist(event.id);
+    } else {
+      addToWishlist({
+        id: event.id,
+        title: event.title,
+        image: event.image,
+        date: event.date,
+        location: event.location,
+        category: event.category,
+        price: event.minPrice
+      });
+    }
   };
   
   return (
@@ -251,9 +278,17 @@ const EventDetail = () => {
                   <Share2 size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
                   {t.shareEvent}
                 </Button>
-                <Button variant="outline" size="sm">
-                  <Heart size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  {t.addToWishlist}
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={toggleWishlist}
+                  className={eventInWishlist ? "bg-rose-50 text-rose-500 border-rose-200" : ""}
+                >
+                  <Heart 
+                    size={16} 
+                    className={`${isRTL ? 'ml-1' : 'mr-1'} ${eventInWishlist ? "fill-rose-500" : ""}`} 
+                  />
+                  {eventInWishlist ? t.removeFromWishlist : t.addToWishlist}
                 </Button>
               </div>
               
