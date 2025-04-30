@@ -105,7 +105,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold">Email</h3>
-                      <p className="text-ticket-blue">contact@ticketmarche.com</p>
+                      <p className="text-ticket-blue">contact@marketix.com</p>
                     </div>
                     <div>
                       <h3 className="font-semibold">Phone</h3>

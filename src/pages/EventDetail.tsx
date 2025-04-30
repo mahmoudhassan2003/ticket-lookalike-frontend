@@ -1,11 +1,11 @@
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Clock, ArrowLeft, Share2, Heart, CreditCard, Ticket } from "lucide-react";
+import { Calendar, MapPin, Clock, ArrowLeft, Share2, Heart, Ticket } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { Input } from "@/components/ui/input";
@@ -18,7 +18,7 @@ const allEvents = [
   {
     id: "c1",
     title: "Taylor Swift - The Eras Tour",
-    description: "Experience Taylor Swift's record-breaking Eras Tour featuring music from throughout her career, stunning visuals, and unforgettable performances.",
+    description: "Experience Taylor Swift's record-breaking Eras Tour featuring music from throughout her career, stunning visuals, and unforgettable performances. This highly anticipated show celebrates the different musical eras of Taylor's career with an elaborate production featuring dazzling costumes, state-of-the-art staging, and all her greatest hits. Don't miss this once-in-a-lifetime opportunity to see one of the most influential artists of our generation live in concert.",
     date: "Jul 15, 2025",
     time: "7:00 PM",
     location: "Wembley Stadium, London",
@@ -36,7 +36,7 @@ const allEvents = [
   {
     id: "s1",
     title: "Premier League: Arsenal vs. Manchester United",
-    description: "Watch two Premier League giants face off in this highly anticipated match that's sure to deliver excitement and world-class football.",
+    description: "Watch two Premier League giants face off in this highly anticipated match that's sure to deliver excitement and world-class football. This historic rivalry will feature some of the sport's biggest stars competing at the highest level. The electric atmosphere at Emirates Stadium for this matchup is legendary, with fans creating an unforgettable environment. Be part of one of football's greatest rivalries and witness the skill, passion and drama of Premier League football at its absolute best.",
     date: "Aug 12, 2025",
     time: "3:00 PM",
     location: "Emirates Stadium, London",
@@ -54,7 +54,7 @@ const allEvents = [
   {
     id: "t1",
     title: "Hamilton",
-    description: "The revolutionary musical that has taken the world by storm, telling the story of American founding father Alexander Hamilton with a blend of hip-hop, jazz, R&B, and Broadway style.",
+    description: "The revolutionary musical that has taken the world by storm, telling the story of American founding father Alexander Hamilton with a blend of hip-hop, jazz, R&B, and Broadway style. Lin-Manuel Miranda's groundbreaking musical has transformed theater as we know it, earning record-setting Tony Awards, a Pulitzer Prize, and global acclaim. With its innovative blend of musical styles and diverse casting, this production brings American history to vivid life through its unforgettable score and powerful storytelling. Experience the phenomenon that continues to captivate audiences worldwide.",
     date: "Jun 15-30, 2025",
     time: "7:30 PM",
     location: "Victoria Palace Theatre, London",
@@ -72,7 +72,7 @@ const allEvents = [
   {
     id: "c2",
     title: "Kevin Hart - Comedy Tour",
-    description: "Join Kevin Hart for a night of laughter as he brings his signature comedy style to the stage with all-new material and hilarious insights.",
+    description: "Join Kevin Hart for a night of laughter as he brings his signature comedy style to the stage with all-new material and hilarious insights. One of the world's most successful comedians returns with his newest tour, delivering his trademark high-energy performance and relatable observational humor. Hart's infectious energy and masterful storytelling create an evening of non-stop entertainment that will have you laughing from start to finish. Experience firsthand why Kevin Hart has become a global comedy phenomenon in this exclusive live show.",
     date: "Sep 3, 2025",
     time: "8:00 PM",
     location: "Madison Square Garden, New York",
@@ -90,7 +90,7 @@ const allEvents = [
   {
     id: "f1",
     title: "Glastonbury Festival 2025",
-    description: "The legendary music and performing arts festival returns with a stellar lineup of artists across multiple stages, offering an unforgettable experience for music lovers.",
+    description: "The legendary music and performing arts festival returns with a stellar lineup of artists across multiple stages, offering an unforgettable experience for music lovers. For five days, Worthy Farm transforms into a magical city of music, art, and culture featuring hundreds of performances across dozens of stages. From headline acts on the Pyramid Stage to emerging artists and immersive experiences throughout the vast festival grounds, Glastonbury offers something for everyone. Join over 200,000 festival-goers for this iconic British institution that continues to define festival culture worldwide.",
     date: "Jun 25-29, 2025",
     time: "All Day",
     location: "Worthy Farm, Somerset, UK",
@@ -108,7 +108,7 @@ const allEvents = [
   {
     id: "f2",
     title: "Disney on Ice",
-    description: "A magical experience for the whole family featuring beloved Disney characters performing amazing ice skating routines to your favorite Disney songs.",
+    description: "A magical experience for the whole family featuring beloved Disney characters performing amazing ice skating routines to your favorite Disney songs. Watch in wonder as your favorite Disney stories come to life through world-class ice skating, elaborate costumes, and stunning special effects. Characters from Frozen, Moana, The Lion King, and more will dazzle audiences with spectacular choreography and heartwarming performances. This enchanting production creates lasting memories for Disney fans of all ages, combining the athleticism of professional skating with the magic of classic Disney storytelling.",
     date: "Dec 10-15, 2025",
     time: "Various Times",
     location: "Barclays Center, New York",
@@ -126,7 +126,7 @@ const allEvents = [
   {
     id: "n1",
     title: "Local Food Festival",
-    description: "Experience the best local cuisine and beverages, with food trucks, chef demonstrations, tastings, and live music in a festive atmosphere.",
+    description: "Experience the best local cuisine and beverages, with food trucks, chef demonstrations, tastings, and live music in a festive atmosphere. This celebration of culinary culture brings together the region's top restaurants, food artisans, breweries, and wineries for an immersive gastronomic experience. Enjoy cooking demonstrations from renowned chefs, participate in interactive workshops, and savor unlimited samples from over 50 different vendors. With live music performances throughout the day and activities for all ages, this food festival offers a delicious day out for foodies and families alike.",
     date: "Jun 5, 2025",
     time: "11:00 AM - 8:00 PM",
     location: "Central Park, New York",

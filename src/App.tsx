@@ -17,8 +17,19 @@ import NearMe from "./pages/NearMe";
 import EventDetail from "./pages/EventDetail";
 import SearchResults from "./pages/SearchResults";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Careers from "./pages/Careers";
+import Press from "./pages/Press";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Affiliate from "./pages/Affiliate";
+import Account from "./pages/Account";
+import OrderStatus from "./pages/OrderStatus";
+import Shipping from "./pages/Shipping";
+import Returns from "./pages/Returns";
+import FAQ from "./pages/FAQ";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import { CartProvider } from "./contexts/CartContext";
+import { CartProvider } from "./contexts/CartProvider";
 import { WishlistProvider } from "./contexts/WishlistContext";
 import { SearchProvider } from "./contexts/SearchContext";
 
@@ -47,18 +58,22 @@ const App = () => (
                   <Route path="/near-me" element={<NearMe />} />
                   <Route path="/event/:eventId" element={<EventDetail />} />
                   <Route path="/search-results" element={<SearchResults />} />
-                  {/* Footer links */}
-                  <Route path="/account" element={<NotFound />} />
-                  <Route path="/order-status" element={<NotFound />} />
-                  <Route path="/shipping" element={<NotFound />} />
-                  <Route path="/returns" element={<NotFound />} />
-                  <Route path="/faq" element={<NotFound />} />
-                  <Route path="/about" element={<NotFound />} />
-                  <Route path="/careers" element={<NotFound />} />
-                  <Route path="/press" element={<NotFound />} />
-                  <Route path="/privacy" element={<NotFound />} />
-                  <Route path="/terms" element={<NotFound />} />
-                  <Route path="/affiliate" element={<NotFound />} />
+                  
+                  {/* About Us Footer Links */}
+                  <Route path="/about" element={<About />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/press" element={<Press />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/affiliate" element={<Affiliate />} />
+                  
+                  {/* Customer Service Footer Links */}
+                  <Route path="/account" element={<Account />} />
+                  <Route path="/order-status" element={<OrderStatus />} />
+                  <Route path="/shipping" element={<Shipping />} />
+                  <Route path="/returns" element={<Returns />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

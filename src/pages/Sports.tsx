@@ -99,7 +99,7 @@ const Sports = () => {
                     <div className="flex justify-between items-center mt-2">
                       <span className="text-sm font-medium text-ticket-blue">From $65</span>
                       <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
-                        <Link to={`/event/s${event.id}`}>Book Tickets</Link>
+                        <Link to={`/event/${event.id}`}>Book Tickets</Link>
                       </Button>
                     </div>
                   </CardContent>
