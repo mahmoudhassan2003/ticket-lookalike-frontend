@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, User, Menu, X, Earth } from "lucide-react";
@@ -13,11 +13,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
+import { LanguageContext, LanguageProvider } from "../contexts/LanguageContext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAuthDialogOpen, setIsAuthDialogOpen] = useState(false);
-  const [language, setLanguage] = useState<'en' | 'ar'>('en');
+  const { language, setLanguage } = useContext(LanguageContext);
   const { toast } = useToast();
 
   const toggleLanguage = (lang: 'en' | 'ar') => {
@@ -27,17 +28,47 @@ const Navbar = () => {
       description: lang === 'en' ? 'English is now selected.' : 'تم اختيار اللغة العربية.',
       duration: 3000
     });
-    // In a real app, this would trigger language change throughout the application
   };
 
+  // Translations based on the current language
+  const translations = {
+    en: {
+      concerts: "Concerts",
+      sports: "Sports",
+      theater: "Theater",
+      festivals: "Festivals",
+      contact: "Contact",
+      support: "Support",
+      myAccount: "My Account",
+      search: "Search for events, artists, teams..."
+    },
+    ar: {
+      concerts: "حفلات",
+      sports: "رياضة",
+      theater: "مسرح",
+      festivals: "مهرجانات",
+      contact: "اتصل بنا",
+      support: "الدعم",
+      myAccount: "حسابي",
+      search: "ابحث عن الفعاليات والفنانين والفرق..."
+    }
+  };
+
+  const t = translations[language];
+  const isRTL = language === 'ar';
+
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-sm" dir={isRTL ? "rtl" : "ltr"}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-ticket-blue">Ticket<span className="text-ticket-darkOrange">Marché</span></span>
+              <img 
+                src="/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png" 
+                alt="MarketIX Logo" 
+                className="h-8 mr-2" 
+              />
             </Link>
           </div>
           
@@ -47,7 +78,7 @@ const Navbar = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
               <Input 
                 type="text" 
-                placeholder="Search for events, artists, teams..." 
+                placeholder={t.search}
                 className="pl-10 pr-4 py-2 w-full rounded-full border border-gray-300 focus:border-ticket-blue focus:ring-1 focus:ring-ticket-blue"
               />
             </div>
@@ -55,12 +86,12 @@ const Navbar = () => {
           
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/concerts" className="header-link text-sm font-medium">Concerts</Link>
-            <Link to="/sports" className="header-link text-sm font-medium">Sports</Link>
-            <Link to="/theater" className="header-link text-sm font-medium">Theater</Link>
-            <Link to="/festivals" className="header-link text-sm font-medium">Festivals</Link>
-            <Link to="/contact" className="header-link text-sm font-medium">Contact</Link>
-            <Link to="/support" className="header-link text-sm font-medium">Support</Link>
+            <Link to="/concerts" className="header-link text-sm font-medium">{t.concerts}</Link>
+            <Link to="/sports" className="header-link text-sm font-medium">{t.sports}</Link>
+            <Link to="/theater" className="header-link text-sm font-medium">{t.theater}</Link>
+            <Link to="/festivals" className="header-link text-sm font-medium">{t.festivals}</Link>
+            <Link to="/contact" className="header-link text-sm font-medium">{t.contact}</Link>
+            <Link to="/support" className="header-link text-sm font-medium">{t.support}</Link>
             
             {/* Language Dropdown */}
             <DropdownMenu>
@@ -74,7 +105,7 @@ const Navbar = () => {
                   English
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => toggleLanguage('ar')} className={language === 'ar' ? 'bg-muted' : ''}>
-                  {language === 'ar' ? 'العربية' : 'العربية'}
+                  العربية
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -106,24 +137,24 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div className={cn(
         "fixed inset-0 bg-white z-40 pt-16 px-4 md:hidden transition-transform duration-300 ease-in-out",
-        isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        isMobileMenuOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full"
       )}>
         <div className="py-4 space-y-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
             <Input 
               type="text" 
-              placeholder="Search for events..." 
+              placeholder={t.search}
               className="pl-10 pr-4 py-2 w-full rounded-full border border-gray-300"
             />
           </div>
           <div className="space-y-3 pt-4">
-            <Link to="/concerts" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Concerts</Link>
-            <Link to="/sports" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Sports</Link>
-            <Link to="/theater" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Theater</Link>
-            <Link to="/festivals" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Festivals</Link>
-            <Link to="/contact" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Contact</Link>
-            <Link to="/support" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">Support</Link>
+            <Link to="/concerts" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">{t.concerts}</Link>
+            <Link to="/sports" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">{t.sports}</Link>
+            <Link to="/theater" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">{t.theater}</Link>
+            <Link to="/festivals" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">{t.festivals}</Link>
+            <Link to="/contact" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">{t.contact}</Link>
+            <Link to="/support" className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200">{t.support}</Link>
             <div className="flex justify-between items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200">
               <span>Language</span>
               <div className="flex space-x-3">
@@ -137,7 +168,7 @@ const Navbar = () => {
                   onClick={() => toggleLanguage('ar')}
                   className={`px-2 py-1 rounded ${language === 'ar' ? 'bg-ticket-blue text-white' : ''}`}
                 >
-                  {language === 'ar' ? 'ع' : 'ع'}
+                  ع
                 </button>
               </div>
             </div>
@@ -150,7 +181,7 @@ const Navbar = () => {
                 setIsAuthDialogOpen(true);
               }}
             >
-              <User size={20} className="mr-2" /> My Account
+              <User size={20} className="mr-2" /> {t.myAccount}
             </a>
           </div>
         </div>

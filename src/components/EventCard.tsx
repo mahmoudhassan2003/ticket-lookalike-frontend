@@ -12,6 +12,7 @@ interface EventCardProps {
   image: string;
   category: string;
   isFeatured?: boolean;
+  fromText?: string;
 }
 
 const EventCard = ({
@@ -21,7 +22,8 @@ const EventCard = ({
   location,
   image,
   category,
-  isFeatured = false
+  isFeatured = false,
+  fromText = "From"
 }: EventCardProps) => {
   return (
     <Card className="event-card overflow-hidden h-full border border-gray-200 rounded-lg">
@@ -49,7 +51,7 @@ const EventCard = ({
         <p className="text-sm text-gray-500 truncate">{location}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
-        <span className="text-sm text-ticket-blue font-medium">From $35</span>
+        <span className="text-sm text-ticket-blue font-medium">{fromText} $35</span>
         <a 
           href={`/event/${id}`} 
           className="text-sm font-medium text-ticket-blue hover:underline"
