@@ -1,19 +1,30 @@
 
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const NotFound = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
+    // Check if the path contains "event/" and redirect appropriately
+    if (location.pathname.includes("/event/")) {
+      // Log the error but stay on the NotFound page
+      console.error(
+        "404 Error: User attempted to access non-existent route:",
+        location.pathname
+      );
+    } else if (location.pathname === "/not-found") {
+      // If we're already on the not-found page, we'll stay here
+      console.error(
+        "404 Error: User attempted to access non-existent route:",
+        location.pathname
+      );
+    }
+  }, [location.pathname, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col">
