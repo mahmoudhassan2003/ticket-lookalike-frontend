@@ -4,11 +4,12 @@ import EventCard from './EventCard';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { LanguageContext } from "../contexts/LanguageContext";
+import { Link } from 'react-router-dom';
 
 // Event data with high-quality images
 const upcomingEvents = [
   {
-    id: "5",
+    id: "u1",
     title: "Coldplay - Music of the Spheres World Tour",
     date: "Aug 15, 2025",
     location: "Wembley Stadium, London",
@@ -16,7 +17,7 @@ const upcomingEvents = [
     category: "Concerts"
   },
   {
-    id: "6",
+    id: "u2",
     title: "UEFA Champions League Final",
     date: "May 31, 2025",
     location: "Allianz Arena, Munich",
@@ -24,7 +25,7 @@ const upcomingEvents = [
     category: "Sports"
   },
   {
-    id: "7",
+    id: "u3",
     title: "Kevin Hart - Comedy Tour",
     date: "Sep 3, 2025",
     location: "Madison Square Garden, New York",
@@ -32,7 +33,7 @@ const upcomingEvents = [
     category: "Comedy"
   },
   {
-    id: "8",
+    id: "u4",
     title: "Cirque du Soleil - Alegría",
     date: "Jul 25-30, 2025",
     location: "Royal Albert Hall, London",
@@ -40,7 +41,7 @@ const upcomingEvents = [
     category: "Theater"
   },
   {
-    id: "9",
+    id: "u5",
     title: "Imagine Dragons World Tour",
     date: "Oct 5, 2025",
     location: "T-Mobile Arena, Las Vegas",
@@ -48,7 +49,7 @@ const upcomingEvents = [
     category: "Concerts"
   },
   {
-    id: "10",
+    id: "u6",
     title: "Wimbledon Tennis Championships",
     date: "Jun 28 - Jul 11, 2025",
     location: "All England Club, London",
@@ -56,7 +57,7 @@ const upcomingEvents = [
     category: "Sports"
   },
   {
-    id: "11",
+    id: "u7",
     title: "The Lion King - Broadway Musical",
     date: "Sep 10-20, 2025",
     location: "Minskoff Theatre, New York",
@@ -64,7 +65,7 @@ const upcomingEvents = [
     category: "Theater"
   },
   {
-    id: "12",
+    id: "u8",
     title: "Comic Con International",
     date: "Jul 24-27, 2025",
     location: "San Diego Convention Center",
@@ -166,9 +167,11 @@ const UpcomingEvents = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">{t.upcomingEvents}</h2>
-          <Button variant="link" className="text-ticket-blue flex items-center">
-            {t.viewAll} {!isRTL && <ArrowRight size={16} className="ml-1" />}
-            {isRTL && <ArrowRight size={16} className="mr-1 rotate-180" />}
+          <Button variant="link" className="text-ticket-blue flex items-center" asChild>
+            <Link to="/">
+              {t.viewAll} {!isRTL && <ArrowRight size={16} className="ml-1" />}
+              {isRTL && <ArrowRight size={16} className="mr-1 rotate-180" />}
+            </Link>
           </Button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

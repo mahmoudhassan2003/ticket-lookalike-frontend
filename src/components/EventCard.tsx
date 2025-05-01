@@ -32,8 +32,8 @@ const EventCard = ({
   
   return (
     <Card className="event-card overflow-hidden h-full border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-      <Link to={`/event/${id}`}>
-        <div className="relative h-40 md:h-48 overflow-hidden">
+      <div className="relative h-40 md:h-48 overflow-hidden">
+        <Link to={`/event/${id}`}>
           <img 
             src={image} 
             alt={title}
@@ -45,13 +45,13 @@ const EventCard = ({
             </Badge>
           )}
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-      </Link>
+        </Link>
+      </div>
       <CardContent className="p-4">
         <Badge variant="outline" className="mb-2 font-normal text-xs">
           {category}
         </Badge>
-        <Link to={`/event/${id}`} className="block">
+        <Link to={`/event/${id}`}>
           <h3 className="font-semibold text-lg mb-1 line-clamp-2 hover:text-ticket-blue transition-colors">{title}</h3>
         </Link>
         <div className="flex items-center text-sm text-gray-500 mb-1">

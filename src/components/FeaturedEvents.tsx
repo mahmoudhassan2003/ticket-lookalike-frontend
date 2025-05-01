@@ -3,11 +3,12 @@ import React from 'react';
 import EventCard from './EventCard';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from 'react-router-dom';
 
 // Sample event data with updated images
 const featuredEvents = [
   {
-    id: "1",
+    id: "f1",
     title: "Taylor Swift | The Eras Tour",
     date: "Jun 12, 2025",
     location: "SoFi Stadium, Los Angeles",
@@ -16,7 +17,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "2",
+    id: "f2",
     title: "NBA Finals 2025 - Home Game 1",
     date: "May 29, 2025",
     location: "TD Garden, Boston",
@@ -25,7 +26,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "3",
+    id: "f3",
     title: "Hamilton - The Musical",
     date: "Jul 5-10, 2025",
     location: "Richard Rodgers Theatre, New York",
@@ -34,7 +35,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "4",
+    id: "f4",
     title: "Coachella Valley Music and Arts Festival",
     date: "Apr 10-19, 2025",
     location: "Empire Polo Club, Indio",
@@ -50,8 +51,10 @@ const FeaturedEvents = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">Featured Events</h2>
-          <Button variant="link" className="text-ticket-blue flex items-center">
-            View all <ArrowRight size={16} className="ml-1" />
+          <Button variant="link" className="text-ticket-blue flex items-center" asChild>
+            <Link to="/">
+              View all <ArrowRight size={16} className="ml-1" />
+            </Link>
           </Button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
