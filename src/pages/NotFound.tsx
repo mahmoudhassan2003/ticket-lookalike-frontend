@@ -10,21 +10,12 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the path contains "event/" and redirect appropriately
-    if (location.pathname.includes("/event/")) {
-      // Log the error but stay on the NotFound page
-      console.error(
-        "404 Error: User attempted to access non-existent route:",
-        location.pathname
-      );
-    } else if (location.pathname === "/not-found") {
-      // If we're already on the not-found page, we'll stay here
-      console.error(
-        "404 Error: User attempted to access non-existent route:",
-        location.pathname
-      );
-    }
-  }, [location.pathname, navigate]);
+    // Log the error but stay on the NotFound page
+    console.error(
+      "404 Error: User attempted to access non-existent route:",
+      location.pathname
+    );
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -38,8 +29,11 @@ const NotFound = () => {
             The page you're looking for might have been removed, had its name changed, 
             or is temporarily unavailable.
           </p>
-          <Button className="bg-ticket-blue hover:bg-ticket-lightBlue">
-            <a href="/">Return to Home</a>
+          <Button 
+            className="bg-ticket-blue hover:bg-ticket-lightBlue"
+            onClick={() => navigate("/")}
+          >
+            Return to Home
           </Button>
         </div>
       </main>
