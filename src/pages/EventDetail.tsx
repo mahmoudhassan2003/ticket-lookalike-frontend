@@ -1,6 +1,5 @@
-
 import React, { useState, useContext, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Badge } from "@/components/ui/badge";
@@ -145,6 +144,7 @@ const allEvents = [
 const EventDetail = () => {
   const { eventId } = useParams();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const { language } = useContext(LanguageContext);
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -153,7 +153,20 @@ const EventDetail = () => {
   const [selectedTicketType, setSelectedTicketType] = useState(0);
 
   // Find the event by ID
-  const event = allEvents.find(e => e.id === eventId) || allEvents[0];
+  const event = allEvents.find(e => e.id === eventId);
+  
+  // If event doesn't exist, redirect to 404
+  useEffect(() => {
+    if (!event && eventId) {
+      navigate('/not-found');
+    }
+  }, [event, eventId, navigate]);
+  
+  // Return early if no event found
+  if (!event) {
+    return null;
+  }
+  
   const eventInWishlist = isInWishlist(event.id);
   
   const translations = {
@@ -206,6 +219,11 @@ const EventDetail = () => {
       ticketType: event.ticketLevels[selectedTicketType].name,
       image: event.image,
       date: event.date
+    });
+    
+    toast({
+      title: t.ticketsAdded,
+      description: t.ticketsAddedDesc,
     });
   };
   
