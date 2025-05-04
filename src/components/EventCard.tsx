@@ -1,10 +1,10 @@
 
-import React, { useContext } from 'react';
+import React from 'react';
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
-import { LanguageContext } from "../contexts/LanguageContext";
+import { Calendar, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 
 interface EventCardProps {
   id: string;
@@ -14,61 +14,32 @@ interface EventCardProps {
   image: string;
   category: string;
   isFeatured?: boolean;
-  fromText?: string;
 }
 
-const EventCard = ({
-  id,
-  title,
-  date,
-  location,
-  image,
-  category,
-  isFeatured = false,
-  fromText = "From"
-}: EventCardProps) => {
-  const { language } = useContext(LanguageContext);
-  const isRTL = language === 'ar';
-  
+const EventCard = ({ id, title, date, location, image, category, isFeatured }: EventCardProps) => {
   return (
-    <Card className="event-card overflow-hidden h-full border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-      <div className="relative h-40 md:h-48 overflow-hidden">
-        <Link to={`/event/${id}`}>
-          <img 
-            src={image} 
-            alt={title}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-          />
-          {isFeatured && (
-            <Badge className="absolute top-2 right-2 bg-ticket-blue text-white">
-              {language === 'ar' ? 'مميز' : 'Featured'}
-            </Badge>
-          )}
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-        </Link>
+    <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
+      <div className="relative h-48 overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
       </div>
       <CardContent className="p-4">
-        <Badge variant="outline" className="mb-2 font-normal text-xs">
-          {category}
-        </Badge>
-        <Link to={`/event/${id}`}>
-          <h3 className="font-semibold text-lg mb-1 line-clamp-2 hover:text-ticket-blue transition-colors">{title}</h3>
-        </Link>
+        <Badge variant="outline" className="mb-2">{category}</Badge>
+        <h3 className="font-semibold text-lg mb-1">{title}</h3>
         <div className="flex items-center text-sm text-gray-500 mb-1">
-          <Calendar size={14} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
+          <Calendar size={14} className="mr-1" />
           <span>{date}</span>
         </div>
-        <p className="text-sm text-gray-500 truncate">{location}</p>
+        <p className="text-sm text-gray-500 mb-3">{location}</p>
+        <div className="flex justify-end mt-2">
+          <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
+            <Link to={`/event/${id}`}>Book Tickets</Link>
+          </Button>
+        </div>
       </CardContent>
-      <CardFooter className="p-4 pt-0 flex items-center justify-between">
-        <span className="text-sm text-ticket-blue font-medium">{fromText} $35</span>
-        <Link 
-          to={`/event/${id}`} 
-          className="text-sm font-medium text-ticket-blue hover:underline"
-        >
-          {language === 'ar' ? 'عرض التذاكر' : 'View tickets'}
-        </Link>
-      </CardFooter>
     </Card>
   );
 };

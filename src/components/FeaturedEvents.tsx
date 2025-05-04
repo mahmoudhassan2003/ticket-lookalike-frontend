@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from 'react-router-dom';
 
-// Sample event data with updated images
+// Sample event data with updated images and IDs matching the EventDetail page
 const featuredEvents = [
   {
     id: "c1",

@@ -1,19 +1,19 @@
 
 import React, { useContext } from 'react';
+import { LanguageContext } from '../contexts/LanguageContext';
 import EventCard from './EventCard';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { LanguageContext } from "../contexts/LanguageContext";
 import { Link } from 'react-router-dom';
 
-// Event data with high-quality images
-const upcomingEvents = [
+// English event data
+const upcomingEventsEn = [
   {
     id: "u1",
     title: "Coldplay - Music of the Spheres World Tour",
     date: "Aug 15, 2025",
     location: "Wembley Stadium, London",
-    image: "https://images.unsplash.com/photo-1470020618177-f49a96241ae7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Concerts"
   },
   {
@@ -21,7 +21,7 @@ const upcomingEvents = [
     title: "UEFA Champions League Final",
     date: "May 31, 2025",
     location: "Allianz Arena, Munich",
-    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Sports"
   },
   {
@@ -29,7 +29,7 @@ const upcomingEvents = [
     title: "Kevin Hart - Comedy Tour",
     date: "Sep 3, 2025",
     location: "Madison Square Garden, New York",
-    image: "https://images.unsplash.com/photo-1606982763583-11636a6c8382?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png",
     category: "Comedy"
   },
   {
@@ -37,7 +37,7 @@ const upcomingEvents = [
     title: "Cirque du Soleil - Alegría",
     date: "Jul 25-30, 2025",
     location: "Royal Albert Hall, London",
-    image: "https://images.unsplash.com/photo-1551142915-8d5bca85a0b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Theater"
   },
   {
@@ -45,7 +45,7 @@ const upcomingEvents = [
     title: "Imagine Dragons World Tour",
     date: "Oct 5, 2025",
     location: "T-Mobile Arena, Las Vegas",
-    image: "https://images.unsplash.com/photo-1564585222527-c2777a5bc6cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Concerts"
   },
   {
@@ -53,23 +53,23 @@ const upcomingEvents = [
     title: "Wimbledon Tennis Championships",
     date: "Jun 28 - Jul 11, 2025",
     location: "All England Club, London",
-    image: "https://images.unsplash.com/photo-1565051756237-e85fb8cac7ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Sports"
   },
   {
     id: "u7",
-    title: "The Lion King - Broadway Musical",
+    title: "The Lion King - Broadway",
     date: "Sep 10-20, 2025",
     location: "Minskoff Theatre, New York",
-    image: "https://images.unsplash.com/photo-1583004231608-3109948a3fd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Theater"
   },
   {
     id: "u8",
-    title: "Comic Con International",
+    title: "Comic-Con International",
     date: "Jul 24-27, 2025",
     location: "San Diego Convention Center",
-    image: "https://images.unsplash.com/photo-1612036782180-6f0822045d55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1608889476561-6242cfdbf622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Festivals"
   }
 ];
@@ -81,7 +81,7 @@ const upcomingEventsAr = [
     title: "كولدبلاي - جولة كرة الموسيقى العالمية",
     date: "15 أغسطس, 2025",
     location: "ملعب ويمبلي، لندن",
-    image: "https://images.unsplash.com/photo-1470020618177-f49a96241ae7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "حفلات"
   },
   {
@@ -89,7 +89,7 @@ const upcomingEventsAr = [
     title: "نهائي دوري أبطال أوروبا",
     date: "31 مايو, 2025",
     location: "أليانز أرينا، ميونخ",
-    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "رياضة"
   },
   {
@@ -97,7 +97,7 @@ const upcomingEventsAr = [
     title: "كيفن هارت - جولة كوميدية",
     date: "3 سبتمبر, 2025",
     location: "ماديسون سكوير غاردن، نيويورك",
-    image: "https://images.unsplash.com/photo-1606982763583-11636a6c8382?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png",
     category: "كوميديا"
   },
   {
@@ -105,7 +105,7 @@ const upcomingEventsAr = [
     title: "سيرك دو سوليه - أليغريا",
     date: "25-30 يوليو, 2025",
     location: "رويال ألبرت هول، لندن",
-    image: "https://images.unsplash.com/photo-1551142915-8d5bca85a0b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "مسرح"
   },
   {
@@ -113,7 +113,7 @@ const upcomingEventsAr = [
     title: "إيماجين دراغونز جولة عالمية",
     date: "5 أكتوبر, 2025",
     location: "تي-موبايل أرينا، لاس فيغاس",
-    image: "https://images.unsplash.com/photo-1564585222527-c2777a5bc6cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "حفلات"
   },
   {
@@ -121,7 +121,7 @@ const upcomingEventsAr = [
     title: "بطولات ويمبلدون للتنس",
     date: "28 يونيو - 11 يوليو, 2025",
     location: "أول إنجلاند كلوب، لندن",
-    image: "https://images.unsplash.com/photo-1565051756237-e85fb8cac7ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "رياضة"
   },
   {
@@ -129,7 +129,7 @@ const upcomingEventsAr = [
     title: "الملك الأسد - مسرحية برودواي",
     date: "10-20 سبتمبر, 2025",
     location: "مسرح مينسكوف، نيويورك",
-    image: "https://images.unsplash.com/photo-1583004231608-3109948a3fd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "مسرح"
   },
   {
@@ -137,7 +137,7 @@ const upcomingEventsAr = [
     title: "كوميك كون الدولية",
     date: "24-27 يوليو, 2025",
     location: "مركز سان دييغو للمؤتمرات",
-    image: "https://images.unsplash.com/photo-1612036782180-6f0822045d55?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1608889476561-6242cfdbf622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "مهرجانات"
   }
 ];
@@ -145,25 +145,25 @@ const upcomingEventsAr = [
 const UpcomingEvents = () => {
   const { language } = useContext(LanguageContext);
   const isRTL = language === 'ar';
-  const events = language === 'ar' ? upcomingEventsAr : upcomingEvents;
+  
+  // Select event data based on language
+  const events = language === 'ar' ? upcomingEventsAr : upcomingEventsEn;
   
   const translations = {
     en: {
       upcomingEvents: "Upcoming Events",
-      viewAll: "View all",
-      from: "From",
+      viewAll: "View all"
     },
     ar: {
       upcomingEvents: "الفعاليات القادمة",
-      viewAll: "عرض الكل",
-      from: "من",
+      viewAll: "عرض الكل"
     }
   };
   
   const t = translations[language];
   
   return (
-    <section className="py-12 bg-white" dir={isRTL ? "rtl" : "ltr"}>
+    <section className="py-12">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">{t.upcomingEvents}</h2>
@@ -174,14 +174,14 @@ const UpcomingEvents = () => {
             </Link>
           </Button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {events.map((event) => (
-            <EventCard 
-              key={event.id} 
-              {...event} 
-              fromText={t.from}
-            />
-          ))}
+        <div className="overflow-x-auto pb-4">
+          <div className={`grid grid-flow-col auto-cols-max gap-6 ${isRTL ? 'rtl' : 'ltr'}`} style={{ minWidth: "100%", paddingLeft: "1px" }}>
+            {events.map((event) => (
+              <div style={{ width: "280px" }} key={event.id}>
+                <EventCard {...event} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
