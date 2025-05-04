@@ -6,26 +6,26 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from 'react-router-dom';
 
-// English event data
+// English event data with updated IDs that match EventDetail.tsx
 const upcomingEventsEn = [
   {
-    id: "u1",
-    title: "Coldplay - Music of the Spheres World Tour",
-    date: "Aug 15, 2025",
+    id: "c1",  // Changed from u1 to c1 to match EventDetail.tsx
+    title: "Taylor Swift - The Eras Tour",
+    date: "Jul 15, 2025",
     location: "Wembley Stadium, London",
     image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Concerts"
   },
   {
-    id: "u2",
-    title: "UEFA Champions League Final",
-    date: "May 31, 2025",
-    location: "Allianz Arena, Munich",
+    id: "s1",  // Changed from u2 to s1 to match EventDetail.tsx
+    title: "NBA Finals 2025 - Home Game 1",
+    date: "May 29, 2025",
+    location: "TD Garden, Boston",
     image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Sports"
   },
   {
-    id: "u3",
+    id: "c2", // Changed from u3 to c2 to match EventDetail.tsx
     title: "Kevin Hart - Comedy Tour",
     date: "Sep 3, 2025",
     location: "Madison Square Garden, New York",
@@ -33,51 +33,51 @@ const upcomingEventsEn = [
     category: "Comedy"
   },
   {
-    id: "u4",
-    title: "Cirque du Soleil - Alegría",
-    date: "Jul 25-30, 2025",
-    location: "Royal Albert Hall, London",
+    id: "t1", // Changed from u4 to t1 to match EventDetail.tsx
+    title: "Hamilton - The Musical",
+    date: "Jul 5-10, 2025",
+    location: "Richard Rodgers Theatre, New York",
     image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Theater"
   },
   {
-    id: "u5",
-    title: "Imagine Dragons World Tour",
-    date: "Oct 5, 2025",
-    location: "T-Mobile Arena, Las Vegas",
+    id: "c1", // Changed from u5 to c1 (duplicate to use existing event)
+    title: "Taylor Swift - The Eras Tour",
+    date: "Jun 12, 2025",
+    location: "SoFi Stadium, Los Angeles",
     image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Concerts"
   },
   {
-    id: "u6",
-    title: "Wimbledon Tennis Championships",
-    date: "Jun 28 - Jul 11, 2025",
-    location: "All England Club, London",
+    id: "s1", // Changed from u6 to s1 (duplicate to use existing event)
+    title: "NBA Finals 2025 - Home Game 1",
+    date: "May 29, 2025",
+    location: "TD Garden, Boston",
     image: "https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Sports"
   },
   {
-    id: "u7",
-    title: "The Lion King - Broadway",
-    date: "Sep 10-20, 2025",
-    location: "Minskoff Theatre, New York",
+    id: "t1", // Changed from u7 to t1 (duplicate to use existing event)
+    title: "Hamilton - The Musical",
+    date: "Jul 5, 2025",
+    location: "Richard Rodgers Theatre, New York",
     image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Theater"
   },
   {
-    id: "u8",
-    title: "Comic-Con International",
-    date: "Jul 24-27, 2025",
-    location: "San Diego Convention Center",
+    id: "f1", // Changed from u8 to f1 to match EventDetail.tsx
+    title: "Coachella Valley Music and Arts Festival",
+    date: "Apr 10-19, 2025",
+    location: "Empire Polo Club, Indio",
     image: "https://images.unsplash.com/photo-1608889476561-6242cfdbf622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Festivals"
   }
 ];
 
-// Arabic translations for events
+// Arabic translations for events - with updated IDs to match
 const upcomingEventsAr = [
   {
-    id: "u1",
+    id: "c1", // Changed ID to match EventDetail.tsx
     title: "كولدبلاي - جولة كرة الموسيقى العالمية",
     date: "15 أغسطس, 2025",
     location: "ملعب ويمبلي، لندن",
@@ -85,7 +85,7 @@ const upcomingEventsAr = [
     category: "حفلات"
   },
   {
-    id: "u2",
+    id: "s1", // Changed ID to match EventDetail.tsx
     title: "نهائي دوري أبطال أوروبا",
     date: "31 مايو, 2025",
     location: "أليانز أرينا، ميونخ",
@@ -93,7 +93,7 @@ const upcomingEventsAr = [
     category: "رياضة"
   },
   {
-    id: "u3",
+    id: "c2", // Changed ID to match EventDetail.tsx
     title: "كيفن هارت - جولة كوميدية",
     date: "3 سبتمبر, 2025",
     location: "ماديسون سكوير غاردن، نيويورك",
@@ -101,7 +101,7 @@ const upcomingEventsAr = [
     category: "كوميديا"
   },
   {
-    id: "u4",
+    id: "t1", // Changed ID to match EventDetail.tsx
     title: "سيرك دو سوليه - أليغريا",
     date: "25-30 يوليو, 2025",
     location: "رويال ألبرت هول، لندن",
@@ -109,7 +109,7 @@ const upcomingEventsAr = [
     category: "مسرح"
   },
   {
-    id: "u5",
+    id: "c1", // Changed ID to match EventDetail.tsx
     title: "إيماجين دراغونز جولة عالمية",
     date: "5 أكتوبر, 2025",
     location: "تي-موبايل أرينا، لاس فيغاس",
@@ -117,7 +117,7 @@ const upcomingEventsAr = [
     category: "حفلات"
   },
   {
-    id: "u6",
+    id: "s1", // Changed ID to match EventDetail.tsx
     title: "بطولات ويمبلدون للتنس",
     date: "28 يونيو - 11 يوليو, 2025",
     location: "أول إنجلاند كلوب، لندن",
@@ -125,7 +125,7 @@ const upcomingEventsAr = [
     category: "رياضة"
   },
   {
-    id: "u7",
+    id: "t1", // Changed ID to match EventDetail.tsx
     title: "الملك الأسد - مسرحية برودواي",
     date: "10-20 سبتمبر, 2025",
     location: "مسرح مينسكوف، نيويورك",
@@ -133,7 +133,7 @@ const upcomingEventsAr = [
     category: "مسرح"
   },
   {
-    id: "u8",
+    id: "f1", // Changed ID to match EventDetail.tsx
     title: "كوميك كون الدولية",
     date: "24-27 يوليو, 2025",
     location: "مركز سان دييغو للمؤتمرات",

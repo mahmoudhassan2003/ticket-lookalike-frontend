@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/Navbar";
@@ -9,7 +9,7 @@ const NotFound = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Log the error but stay on the NotFound page
     console.error(
       "404 Error: User attempted to access non-existent route:",

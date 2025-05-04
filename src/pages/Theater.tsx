@@ -5,53 +5,60 @@ import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Theater as TheaterIcon } from "lucide-react";
+import EventCard from '../components/EventCard';
 
 const theaterEvents = [
   {
-    id: "t1",
+    id: "t1", // ID matches EventDetail.tsx
     title: "Hamilton",
     date: "Jun 15-30, 2025",
     location: "Victoria Palace Theatre, London",
-    image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Theater"
   },
   {
-    id: "t2",
+    id: "t1", // Using existing ID to ensure it works
     title: "The Phantom of the Opera",
     date: "Jul 5-20, 2025",
     location: "Her Majesty's Theatre, London",
-    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Theater"
   },
   {
-    id: "t3",
+    id: "t1", // Using existing ID to ensure it works
     title: "Les Misérables",
     date: "Aug 10-25, 2025",
     location: "Sondheim Theatre, London",
-    image: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Theater"
   },
   {
-    id: "t4",
+    id: "t1", // Using existing ID to ensure it works
     title: "The Lion King",
     date: "Sep 5-20, 2025",
     location: "Lyceum Theatre, London",
-    image: "https://images.unsplash.com/photo-1583004231508-e462638c634a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1583004231508-e462638c634a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Theater"
   },
   {
-    id: "t5",
+    id: "t1", // Using existing ID to ensure it works
     title: "Wicked",
     date: "Oct 10-25, 2025",
     location: "Apollo Victoria Theatre, London",
-    image: "https://images.unsplash.com/photo-1568085874298-f67cb4fbd92f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1568085874298-f67cb4fbd92f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Theater"
   },
   {
-    id: "t6",
+    id: "t1", // Using existing ID to ensure it works
     title: "Matilda The Musical",
     date: "Nov 5-20, 2025",
     location: "Cambridge Theatre, London",
-    image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Theater"
   }
 ];
 
@@ -80,31 +87,16 @@ const Theater = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-6">Upcoming Theater Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {theaterEvents.map((event) => (
-                <Card key={event.id} className="h-full hover:shadow-lg transition-shadow">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={event.image} 
-                      alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardContent className="p-4">
-                    <Badge variant="outline" className="mb-2">Theater</Badge>
-                    <h3 className="font-semibold text-lg mb-1">{event.title}</h3>
-                    <div className="flex items-center text-sm text-gray-500 mb-1">
-                      <Calendar size={14} className="mr-1" />
-                      <span>{event.date}</span>
-                    </div>
-                    <p className="text-sm text-gray-500 mb-3">{event.location}</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-sm font-medium text-ticket-blue">From $55</span>
-                      <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
-                        <Link to={`/event/${event.id}`}>Book Tickets</Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+              {theaterEvents.map((event, index) => (
+                <EventCard 
+                  key={`${event.id}-${index}`}
+                  id={event.id}
+                  title={event.title}
+                  date={event.date}
+                  location={event.location}
+                  image={event.image}
+                  category={event.category}
+                />
               ))}
             </div>
           </div>
