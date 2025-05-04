@@ -77,7 +77,7 @@ const upcomingEvents = [
 // Arabic translations for events
 const upcomingEventsAr = [
   {
-    id: "5",
+    id: "u1",
     title: "كولدبلاي - جولة كرة الموسيقى العالمية",
     date: "15 أغسطس, 2025",
     location: "ملعب ويمبلي، لندن",
@@ -85,7 +85,7 @@ const upcomingEventsAr = [
     category: "حفلات"
   },
   {
-    id: "6",
+    id: "u2",
     title: "نهائي دوري أبطال أوروبا",
     date: "31 مايو, 2025",
     location: "أليانز أرينا، ميونخ",
@@ -93,7 +93,7 @@ const upcomingEventsAr = [
     category: "رياضة"
   },
   {
-    id: "7",
+    id: "u3",
     title: "كيفن هارت - جولة كوميدية",
     date: "3 سبتمبر, 2025",
     location: "ماديسون سكوير غاردن، نيويورك",
@@ -101,7 +101,7 @@ const upcomingEventsAr = [
     category: "كوميديا"
   },
   {
-    id: "8",
+    id: "u4",
     title: "سيرك دو سوليه - أليغريا",
     date: "25-30 يوليو, 2025",
     location: "رويال ألبرت هول، لندن",
@@ -109,7 +109,7 @@ const upcomingEventsAr = [
     category: "مسرح"
   },
   {
-    id: "9",
+    id: "u5",
     title: "إيماجين دراغونز جولة عالمية",
     date: "5 أكتوبر, 2025",
     location: "تي-موبايل أرينا، لاس فيغاس",
@@ -117,7 +117,7 @@ const upcomingEventsAr = [
     category: "حفلات"
   },
   {
-    id: "10",
+    id: "u6",
     title: "بطولات ويمبلدون للتنس",
     date: "28 يونيو - 11 يوليو, 2025",
     location: "أول إنجلاند كلوب، لندن",
@@ -125,7 +125,7 @@ const upcomingEventsAr = [
     category: "رياضة"
   },
   {
-    id: "11",
+    id: "u7",
     title: "الملك الأسد - مسرحية برودواي",
     date: "10-20 سبتمبر, 2025",
     location: "مسرح مينسكوف، نيويورك",
@@ -133,7 +133,7 @@ const upcomingEventsAr = [
     category: "مسرح"
   },
   {
-    id: "12",
+    id: "u8",
     title: "كوميك كون الدولية",
     date: "24-27 يوليو, 2025",
     location: "مركز سان دييغو للمؤتمرات",
@@ -168,7 +168,7 @@ const UpcomingEvents = () => {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">{t.upcomingEvents}</h2>
           <Button variant="link" className="text-ticket-blue flex items-center" asChild>
-            <Link to="/">
+            <Link to="/concerts">
               {t.viewAll} {!isRTL && <ArrowRight size={16} className="ml-1" />}
               {isRTL && <ArrowRight size={16} className="mr-1 rotate-180" />}
             </Link>

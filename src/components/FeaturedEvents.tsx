@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // Sample event data with updated images
 const featuredEvents = [
   {
-    id: "f1",
+    id: "c1",
     title: "Taylor Swift | The Eras Tour",
     date: "Jun 12, 2025",
     location: "SoFi Stadium, Los Angeles",
@@ -17,7 +17,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "f2",
+    id: "s1",
     title: "NBA Finals 2025 - Home Game 1",
     date: "May 29, 2025",
     location: "TD Garden, Boston",
@@ -26,7 +26,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "f3",
+    id: "t1",
     title: "Hamilton - The Musical",
     date: "Jul 5-10, 2025",
     location: "Richard Rodgers Theatre, New York",
@@ -35,7 +35,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "f4",
+    id: "f1",
     title: "Coachella Valley Music and Arts Festival",
     date: "Apr 10-19, 2025",
     location: "Empire Polo Club, Indio",
@@ -52,7 +52,7 @@ const FeaturedEvents = () => {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl md:text-3xl font-bold">Featured Events</h2>
           <Button variant="link" className="text-ticket-blue flex items-center" asChild>
-            <Link to="/">
+            <Link to="/concerts">
               View all <ArrowRight size={16} className="ml-1" />
             </Link>
           </Button>

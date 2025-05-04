@@ -1,8 +1,8 @@
+
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
-import { Badge } from "@/components/ui/badge";
 import { Music2 } from "lucide-react";
 import EventCard from '../components/EventCard';
 
