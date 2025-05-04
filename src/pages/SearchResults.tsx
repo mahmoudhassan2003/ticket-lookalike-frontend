@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -70,7 +69,6 @@ const SearchResults = () => {
                 location={event.location}
                 image={event.image}
                 category={event.category}
-                fromText={language === 'ar' ? "من" : "From"}
               />
             ))}
           </div>

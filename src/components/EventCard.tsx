@@ -14,9 +14,10 @@ interface EventCardProps {
   image: string;
   category: string;
   isFeatured?: boolean;
+  fromText?: string; // Added optional fromText prop
 }
 
-const EventCard = ({ id, title, date, location, image, category, isFeatured }: EventCardProps) => {
+const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48 overflow-hidden">
@@ -33,7 +34,10 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured }: E
           <Calendar size={14} className="mr-1" />
           <span>{date}</span>
         </div>
-        <p className="text-sm text-gray-500 mb-3">{location}</p>
+        <div className="flex items-center text-sm text-gray-500 mb-3">
+          <MapPin size={14} className="mr-1" />
+          <span>{location}</span>
+        </div>
         <div className="flex justify-end mt-2">
           <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
             <Link to={`/event/${id}`}>Book Tickets</Link>
