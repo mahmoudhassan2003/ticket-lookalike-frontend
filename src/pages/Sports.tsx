@@ -16,7 +16,7 @@ const sportsEvents = [
     category: "Sports"
   },
   {
-    id: "s1", // Using existing ID to ensure it works
+    id: "sports-nba", // Unique ID
     title: "NBA Finals Game 1",
     date: "Jun 4, 2025",
     location: "Madison Square Garden, New York",
@@ -24,7 +24,7 @@ const sportsEvents = [
     category: "Sports"
   },
   {
-    id: "s1", // Using existing ID to ensure it works
+    id: "sports-wimbledon", // Unique ID
     title: "2025 Wimbledon Men's Final",
     date: "Jul 16, 2025",
     location: "All England Club, London",
@@ -32,7 +32,7 @@ const sportsEvents = [
     category: "Sports"
   },
   {
-    id: "s1", // Using existing ID to ensure it works
+    id: "sports-ucl", // Unique ID
     title: "UEFA Champions League Final",
     date: "May 31, 2025",
     location: "Wembley Stadium, London",
@@ -40,7 +40,7 @@ const sportsEvents = [
     category: "Sports"
   },
   {
-    id: "s1", // Using existing ID to ensure it works
+    id: "sports-f1", // Unique ID
     title: "Formula 1 Monaco Grand Prix",
     date: "May 25, 2025",
     location: "Circuit de Monaco, Monte Carlo",
@@ -48,7 +48,7 @@ const sportsEvents = [
     category: "Sports"
   },
   {
-    id: "s1", // Using existing ID to ensure it works
+    id: "sports-nfl", // Unique ID
     title: "NFL International Series",
     date: "Oct 19, 2025",
     location: "Tottenham Hotspur Stadium, London",
@@ -82,9 +82,9 @@ const Sports = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-6">Upcoming Sports Events</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sportsEvents.map((event, index) => (
+              {sportsEvents.map((event) => (
                 <EventCard 
-                  key={`${event.id}-${index}`}
+                  key={event.id}
                   id={event.id}
                   title={event.title}
                   date={event.date}

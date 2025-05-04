@@ -21,7 +21,7 @@ const theaterEvents = [
     category: "Theater"
   },
   {
-    id: "t1", // Using existing ID to ensure it works
+    id: "theater-phantom", // Unique ID
     title: "The Phantom of the Opera",
     date: "Jul 5-20, 2025",
     location: "Her Majesty's Theatre, London",
@@ -29,7 +29,7 @@ const theaterEvents = [
     category: "Theater"
   },
   {
-    id: "t1", // Using existing ID to ensure it works
+    id: "theater-les-mis", // Unique ID
     title: "Les Misérables",
     date: "Aug 10-25, 2025",
     location: "Sondheim Theatre, London",
@@ -37,7 +37,7 @@ const theaterEvents = [
     category: "Theater"
   },
   {
-    id: "t1", // Using existing ID to ensure it works
+    id: "theater-lion-king", // Unique ID
     title: "The Lion King",
     date: "Sep 5-20, 2025",
     location: "Lyceum Theatre, London",
@@ -45,7 +45,7 @@ const theaterEvents = [
     category: "Theater"
   },
   {
-    id: "t1", // Using existing ID to ensure it works
+    id: "theater-wicked", // Unique ID
     title: "Wicked",
     date: "Oct 10-25, 2025",
     location: "Apollo Victoria Theatre, London",
@@ -53,7 +53,7 @@ const theaterEvents = [
     category: "Theater"
   },
   {
-    id: "t1", // Using existing ID to ensure it works
+    id: "theater-matilda", // Unique ID
     title: "Matilda The Musical",
     date: "Nov 5-20, 2025",
     location: "Cambridge Theatre, London",
@@ -87,9 +87,9 @@ const Theater = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-6">Upcoming Theater Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {theaterEvents.map((event, index) => (
+              {theaterEvents.map((event) => (
                 <EventCard 
-                  key={`${event.id}-${index}`}
+                  key={event.id}
                   id={event.id}
                   title={event.title}
                   date={event.date}

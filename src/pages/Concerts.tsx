@@ -16,7 +16,7 @@ const concertEvents = [
     category: "Concerts"
   },
   {
-    id: "c1", // Using existing ID to ensure it works
+    id: "concert-bruno", // Unique ID
     title: "Bruno Mars World Tour",
     date: "Aug 5, 2025",
     location: "Madison Square Garden, New York",
@@ -24,7 +24,7 @@ const concertEvents = [
     category: "Concerts"
   },
   {
-    id: "c1", // Using existing ID to ensure it works
+    id: "concert-adele", // Unique ID
     title: "Adele Live in Concert",
     date: "Sep 10, 2025",
     location: "O2 Arena, London",
@@ -32,7 +32,7 @@ const concertEvents = [
     category: "Concerts"
   },
   {
-    id: "c1", // Using existing ID to ensure it works
+    id: "concert-beyonce", // Unique ID
     title: "Beyoncé Renaissance World Tour",
     date: "Oct 3, 2025",
     location: "Stade de France, Paris",
@@ -40,7 +40,7 @@ const concertEvents = [
     category: "Concerts"
   },
   {
-    id: "c1", // Using existing ID to ensure it works
+    id: "concert-weeknd", // Unique ID
     title: "The Weeknd After Hours Tour",
     date: "Nov 12, 2025",
     location: "Scotiabank Arena, Toronto",
@@ -48,7 +48,7 @@ const concertEvents = [
     category: "Concerts"
   },
   {
-    id: "c1", // Using existing ID to ensure it works
+    id: "concert-bts", // Unique ID
     title: "BTS World Tour",
     date: "Dec 7, 2025",
     location: "Tokyo Dome, Japan",
@@ -82,9 +82,9 @@ const Concerts = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-6">Upcoming Concerts</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {concertEvents.map((event, index) => (
+              {concertEvents.map((event) => (
                 <EventCard 
-                  key={`${event.id}-${index}`}
+                  key={event.id}
                   id={event.id}
                   title={event.title}
                   date={event.date}

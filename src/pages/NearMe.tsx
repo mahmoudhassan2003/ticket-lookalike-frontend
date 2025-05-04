@@ -3,65 +3,68 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { MapPin } from "lucide-react";
+import EventCard from '../components/EventCard';
 
 const nearMeEvents = [
   {
-    id: "n1",
+    id: "n1", // ID matches EventDetail.tsx
     title: "Local Food Festival",
     date: "Jun 5, 2025",
     location: "Central Park, New York",
     image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     price: "$15",
+    category: "Local",
     distance: "0.5 miles away"
   },
   {
-    id: "n2",
+    id: "nearme-art", // Unique ID
     title: "Neighborhood Art Exhibition",
     date: "Jun 12, 2025",
     location: "Community Gallery, Brooklyn",
     image: "https://images.unsplash.com/photo-1532456745301-b2c645d8b80d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     price: "$10",
+    category: "Local",
     distance: "1.2 miles away"
   },
   {
-    id: "n3",
+    id: "nearme-jazz", // Unique ID
     title: "Local Jazz Night",
     date: "Jun 18, 2025",
     location: "Blue Note Jazz Club, Manhattan",
     image: "https://images.unsplash.com/photo-1483393458019-411bc6bd104e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     price: "$25",
+    category: "Local",
     distance: "1.8 miles away"
   },
   {
-    id: "n4",
+    id: "nearme-theater", // Unique ID
     title: "Community Theater Show",
     date: "Jun 25, 2025",
     location: "Village Playhouse, Queens",
     image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     price: "$20",
+    category: "Local",
     distance: "2.3 miles away"
   },
   {
-    id: "n5",
+    id: "nearme-sports", // Unique ID
     title: "Local Sports Tournament",
     date: "Jul 8, 2025",
     location: "City Sports Center, Bronx",
     image: "https://images.unsplash.com/photo-1541252260730-0412e8e2108e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     price: "$5",
+    category: "Local",
     distance: "3.1 miles away"
   },
   {
-    id: "n6",
+    id: "nearme-market", // Unique ID
     title: "Weekend Farmer's Market",
     date: "Every Saturday",
     location: "Union Square, Manhattan",
     image: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     price: "Free",
+    category: "Local",
     distance: "1.4 miles away"
   }
 ];
@@ -92,35 +95,15 @@ const NearMe = () => {
             <h2 className="text-2xl font-bold mb-6">Events in Your Area</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {nearMeEvents.map((event) => (
-                <Card key={event.id} className="h-full hover:shadow-lg transition-shadow">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={event.image} 
-                      alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                    <div className="absolute top-2 right-2">
-                      <Badge variant="secondary" className="bg-black/70 text-white">
-                        {event.distance}
-                      </Badge>
-                    </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <Badge variant="outline" className="mb-2">Local</Badge>
-                    <h3 className="font-semibold text-lg mb-1">{event.title}</h3>
-                    <div className="flex items-center text-sm text-gray-500 mb-1">
-                      <Calendar size={14} className="mr-1" />
-                      <span>{event.date}</span>
-                    </div>
-                    <p className="text-sm text-gray-500 mb-3">{event.location}</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-sm font-medium text-ticket-blue">From {event.price}</span>
-                      <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
-                        <Link to={`/event/${event.id}`}>Book Tickets</Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <EventCard 
+                  key={event.id}
+                  id={event.id}
+                  title={event.title}
+                  date={event.date}
+                  location={event.location}
+                  image={event.image}
+                  category={event.category}
+                />
               ))}
             </div>
           </div>
