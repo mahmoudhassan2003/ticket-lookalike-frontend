@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -83,6 +84,93 @@ const allEvents = [
       { name: "VIP Meet & Greet", price: 200, available: 75 },
       { name: "Premium Seats", price: 150, available: 245 },
       { name: "Standard Admission", price: 85, available: 890 }
+    ]
+  },
+  // Add Dave Chappelle event
+  {
+    id: "comedy-dave",
+    title: "Dave Chappelle Live",
+    description: "Legendary comedian Dave Chappelle returns to the stage with his unfiltered and thought-provoking comedy. Known for his sharp wit and societal observations, Chappelle continues to push boundaries and challenge audiences with his unique perspective. His masterful storytelling and incisive commentary have earned him critical acclaim and a devoted following worldwide. This exclusive performance showcases why Dave Chappelle remains one of the most important and influential voices in comedy today.",
+    date: "Oct 15, 2025",
+    time: "8:00 PM",
+    location: "The O2, London",
+    image: "https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    minPrice: 95,
+    maxPrice: 250,
+    ticketLevels: [
+      { name: "VIP Experience", price: 250, available: 85 },
+      { name: "Premium Seating", price: 175, available: 245 },
+      { name: "Standard Admission", price: 95, available: 780 }
+    ]
+  },
+  // Add remaining comedy events
+  {
+    id: "comedy-trevor",
+    title: "Trevor Noah World Tour",
+    description: "Former Daily Show host Trevor Noah brings his globally successful tour to audiences with fresh, hilarious material that showcases his unique worldview and storytelling abilities. Combining his signature charm, intelligence, and cross-cultural observations, Noah offers insightful commentary on current events and personal experiences that resonates with diverse audiences. His ability to find humor in complex social issues while maintaining thoughtful perspective has established him as one of comedy's most respected voices.",
+    date: "Nov 8, 2025",
+    time: "7:30 PM",
+    location: "Sydney Opera House, Australia",
+    image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    minPrice: 75,
+    maxPrice: 180,
+    ticketLevels: [
+      { name: "VIP Package", price: 180, available: 100 },
+      { name: "Premium Seats", price: 130, available: 250 },
+      { name: "Standard Admission", price: 75, available: 650 }
+    ]
+  },
+  {
+    id: "comedy-mulaney",
+    title: "John Mulaney - From Scratch",
+    description: "Emmy Award-winning writer and comedian John Mulaney delivers his newest stand-up show with the precision and polish that have made him one of comedy's most celebrated performers. Combining impeccable timing, brilliant storytelling, and his distinctively stylized delivery, Mulaney presents an all-new collection of observations and personal stories. His meticulously crafted material and charming stage presence create an evening of sophisticated comedy that showcases his evolution as both a writer and performer.",
+    date: "Dec 1, 2025",
+    time: "8:00 PM",
+    location: "Radio City Music Hall, New York",
+    image: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    minPrice: 80,
+    maxPrice: 195,
+    ticketLevels: [
+      { name: "VIP Experience", price: 195, available: 120 },
+      { name: "Premium Orchestra", price: 125, available: 340 },
+      { name: "Standard Admission", price: 80, available: 780 }
+    ]
+  },
+  {
+    id: "comedy-gervais",
+    title: "Ricky Gervais: SuperNature",
+    description: "Ricky Gervais returns with his characteristically provocative and uncompromising stand-up show that tackles taboo subjects with his trademark irreverent humor. Never one to shy away from controversial topics, Gervais delivers razor-sharp observations on modern society with his distinctively acerbic wit. This unapologetically honest performance tackles everything from human nature to celebrity culture and political correctness, showcasing Gervais's skill at crafting comedy that pushes boundaries while revealing deeper truths about contemporary life.",
+    date: "Jan 20, 2026",
+    time: "7:30 PM",
+    location: "Royal Albert Hall, London",
+    image: "https://images.unsplash.com/photo-1523251343397-9225e4cb6319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    minPrice: 90,
+    maxPrice: 220,
+    ticketLevels: [
+      { name: "VIP Meet & Greet", price: 220, available: 85 },
+      { name: "Premium Circle", price: 155, available: 270 },
+      { name: "Standard Admission", price: 90, available: 730 }
+    ]
+  },
+  {
+    id: "comedy-schumer",
+    title: "Amy Schumer Live",
+    description: "Award-winning comedian, actress, and writer Amy Schumer brings her bold and unapologetic comedic style to the stage in this highly anticipated live show. Known for her candid approach to topics ranging from sex and relationships to body image and motherhood, Schumer delivers brutally honest and hilariously relatable material drawn from her own life experiences. Her fearless comedy and feminist perspective have established her as one of the most influential voices in contemporary comedy, earning her a devoted following across multiple entertainment platforms.",
+    date: "Feb 14, 2026",
+    time: "8:00 PM",
+    location: "Hollywood Bowl, Los Angeles",
+    image: "https://images.unsplash.com/photo-1508252592163-5d3c3c559269?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    minPrice: 70,
+    maxPrice: 175,
+    ticketLevels: [
+      { name: "VIP Package", price: 175, available: 110 },
+      { name: "Premium Seats", price: 125, available: 320 },
+      { name: "Standard Admission", price: 70, available: 900 }
     ]
   },
   // Festivals

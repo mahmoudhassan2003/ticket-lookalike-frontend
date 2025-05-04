@@ -8,55 +8,62 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Smile, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import EventCard from '../components/EventCard';
 
 const comedyEvents = [
   {
-    id: "c1",
+    id: "c2", // Correct ID for Kevin Hart from EventDetail.tsx
     title: "Kevin Hart - Comedy Tour",
     date: "Sep 3, 2025",
     location: "Madison Square Garden, New York",
     image: "/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png",
-    price: "$85"
+    price: "$85",
+    category: "Comedy"
   },
   {
-    id: "c2",
+    id: "comedy-dave", // New unique ID
     title: "Dave Chappelle Live",
     date: "Oct 15, 2025",
     location: "The O2, London",
     image: "https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$95"
+    price: "$95",
+    category: "Comedy"
   },
   {
-    id: "c3",
+    id: "comedy-trevor", // New unique ID
     title: "Trevor Noah World Tour",
     date: "Nov 8, 2025",
     location: "Sydney Opera House, Australia",
     image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$75"
+    price: "$75",
+    category: "Comedy"
   },
   {
-    id: "c4",
+    id: "comedy-mulaney", // New unique ID
     title: "John Mulaney - From Scratch",
     date: "Dec 1, 2025",
     location: "Radio City Music Hall, New York",
     image: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$80"
+    price: "$80",
+    category: "Comedy"
   },
   {
-    id: "c5",
+    id: "comedy-gervais", // New unique ID
     title: "Ricky Gervais: SuperNature",
     date: "Jan 20, 2026",
     location: "Royal Albert Hall, London",
     image: "https://images.unsplash.com/photo-1523251343397-9225e4cb6319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$90"
+    price: "$90",
+    category: "Comedy"
   },
   {
-    id: "c6",
+    id: "comedy-schumer", // New unique ID
     title: "Amy Schumer Live",
     date: "Feb 14, 2026",
     location: "Hollywood Bowl, Los Angeles",
     image: "https://images.unsplash.com/photo-1508252592163-5d3c3c559269?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$70"
+    price: "$70",
+    category: "Comedy"
   }
 ];
 
@@ -86,30 +93,15 @@ const Comedy = () => {
             <h2 className="text-2xl font-bold mb-6">Upcoming Comedy Shows</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {comedyEvents.map((event) => (
-                <Card key={event.id} className="h-full hover:shadow-lg transition-shadow">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={event.image} 
-                      alt={event.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <CardContent className="p-4">
-                    <Badge variant="outline" className="mb-2">Comedy</Badge>
-                    <h3 className="font-semibold text-lg mb-1">{event.title}</h3>
-                    <div className="flex items-center text-sm text-gray-500 mb-1">
-                      <Calendar size={14} className="mr-1" />
-                      <span>{event.date}</span>
-                    </div>
-                    <p className="text-sm text-gray-500 mb-3">{event.location}</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-sm font-medium text-ticket-blue">From {event.price}</span>
-                      <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
-                        <Link to={`/event/${event.id}`}>Book Tickets</Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                <EventCard 
+                  key={event.id}
+                  id={event.id}
+                  title={event.title}
+                  date={event.date}
+                  location={event.location}
+                  image={event.image}
+                  category={event.category}
+                />
               ))}
             </div>
           </div>
