@@ -8,7 +8,7 @@ import EventCard from '../components/EventCard';
 
 const familyEvents = [
   {
-    id: "family-disney", // Unique ID
+    id: "family-disney", 
     title: "Disney on Ice",
     date: "Dec 10-15, 2025",
     location: "Barclays Center, New York",
@@ -17,7 +17,7 @@ const familyEvents = [
     price: 39.99
   },
   {
-    id: "family-peppa", // Unique ID
+    id: "family-peppa", 
     title: "Peppa Pig Live Show",
     date: "Nov 5, 2025",
     location: "The SSE Arena, London",
@@ -26,7 +26,7 @@ const familyEvents = [
     price: 29.99
   },
   {
-    id: "family-science", // Unique ID
+    id: "family-science", 
     title: "Family Science Festival",
     date: "Oct 22, 2025",
     location: "National Science Museum, Washington DC",
@@ -35,7 +35,7 @@ const familyEvents = [
     price: 24.99
   },
   {
-    id: "family-lego", // Unique ID
+    id: "family-lego", 
     title: "LEGO Exhibition",
     date: "Sep 18-25, 2025",
     location: "Convention Center, Chicago",
@@ -44,7 +44,7 @@ const familyEvents = [
     price: 19.99
   },
   {
-    id: "family-zoo", // Unique ID
+    id: "family-zoo", 
     title: "Zoo Adventure Day",
     date: "Aug 12, 2025",
     location: "San Diego Zoo",
@@ -53,7 +53,7 @@ const familyEvents = [
     price: 34.99
   },
   {
-    id: "family-marvel", // Unique ID
+    id: "family-marvel", 
     title: "Marvel Superhero Experience",
     date: "Jul 4, 2025",
     location: "Universal Studios, Orlando",

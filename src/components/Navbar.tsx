@@ -55,6 +55,18 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // When mobile menu is open, prevent body scrolling
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   // Translations based on the current language
   const translations = {
     en: {
@@ -186,24 +198,23 @@ const Navbar = () => {
       
       {/* Mobile menu */}
       <div className={cn(
-        "fixed inset-0 bg-white z-40 pt-16 px-4 md:hidden transition-transform duration-300 ease-in-out",
+        "fixed inset-0 bg-white z-40 md:hidden transition-transform duration-300 ease-in-out flex flex-col",
         isMobileMenuOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full"
       )}>
-        <div className="py-4 space-y-4">
-          {/* Close button */}
-          <div className="flex justify-end">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="flex items-center text-gray-500" 
-              onClick={closeMobileMenu}
-            >
-              <X size={18} className="mr-1" />
-              {t.close}
-            </Button>
-          </div>
+        <div className="p-4 border-b flex items-center justify-between">
+          <h2 className="text-lg font-semibold">Menu</h2>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-gray-500" 
+            onClick={closeMobileMenu}
+          >
+            <X size={24} />
+          </Button>
+        </div>
 
-          <form onSubmit={handleSearch}>
+        <div className="flex-1 overflow-y-auto p-4">
+          <form onSubmit={handleSearch} className="mb-6">
             <div className="relative">
               <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400`} size={18} />
               <Input 
@@ -215,7 +226,8 @@ const Navbar = () => {
               />
             </div>
           </form>
-          <div className="space-y-3 pt-4">
+
+          <div className="space-y-3">
             <Link 
               to="/concerts" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
@@ -261,6 +273,7 @@ const Navbar = () => {
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
               onClick={closeMobileMenu}
             >{t.support}</Link>
+
             <div className="flex justify-between items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200">
               <span>Language</span>
               <div className="flex space-x-3">
@@ -278,52 +291,52 @@ const Navbar = () => {
                 </button>
               </div>
             </div>
-            <a 
-              href="#" 
-              className="flex items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={(e) => {
-                e.preventDefault();
-                setIsMobileMenuOpen(false);
-                setIsAuthDialogOpen(true);
-              }}
-            >
-              <User size={20} className="mr-2" /> {t.myAccount}
-            </a>
-
-            {/* Mobile Wishlist and Cart */}
-            <div className="grid grid-cols-2 gap-4 py-4">
-              <div className="text-center">
-                <button 
-                  className="flex flex-col items-center justify-center w-full"
-                  onClick={() => {
-                    const wishlistTriggerButton = document.querySelector('[data-wishlist-trigger="true"]');
-                    if (wishlistTriggerButton && wishlistTriggerButton instanceof HTMLButtonElement) {
-                      wishlistTriggerButton.click();
-                    }
-                    closeMobileMenu();
-                  }}
-                >
-                  <Heart size={24} className="mb-1" />
-                  <span className="text-sm">{t.wishlist}</span>
-                </button>
-              </div>
-              <div className="text-center">
-                <button 
-                  className="flex flex-col items-center justify-center w-full"
-                  onClick={() => {
-                    const cartTriggerButton = document.querySelector('[data-cart-trigger="true"]');
-                    if (cartTriggerButton && cartTriggerButton instanceof HTMLButtonElement) {
-                      cartTriggerButton.click();
-                    }
-                    closeMobileMenu();
-                  }}
-                >
-                  <ShoppingCart size={24} className="mb-1" />
-                  <span className="text-sm">{t.cart}</span>
-                </button>
-              </div>
-            </div>
           </div>
+        </div>
+
+        {/* Mobile bottom navigation bar */}
+        <div className="grid grid-cols-3 border-t bg-white py-2">
+          {/* Mobile Wishlist */}
+          <button 
+            className="flex flex-col items-center justify-center"
+            onClick={() => {
+              const wishlistTriggerButton = document.querySelector('[data-wishlist-trigger="true"]');
+              if (wishlistTriggerButton && wishlistTriggerButton instanceof HTMLElement) {
+                wishlistTriggerButton.click();
+              }
+              closeMobileMenu();
+            }}
+          >
+            <Heart size={24} className="mb-1" />
+            <span className="text-xs">{t.wishlist}</span>
+          </button>
+
+          {/* Mobile Cart */}
+          <button 
+            className="flex flex-col items-center justify-center"
+            onClick={() => {
+              const cartTriggerButton = document.querySelector('[data-cart-trigger="true"]');
+              if (cartTriggerButton && cartTriggerButton instanceof HTMLElement) {
+                cartTriggerButton.click();
+              }
+              closeMobileMenu();
+            }}
+          >
+            <ShoppingCart size={24} className="mb-1" />
+            <span className="text-xs">{t.cart}</span>
+          </button>
+
+          {/* Mobile User Profile */}
+          <button 
+            className="flex flex-col items-center justify-center"
+            onClick={() => {
+              setIsAuthDialogOpen(true);
+              closeMobileMenu();
+            }}
+          >
+            <User size={24} className="mb-1" />
+            <span className="text-xs">{t.myAccount}</span>
+          </button>
         </div>
       </div>
 
