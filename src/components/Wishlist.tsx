@@ -14,7 +14,13 @@ import { useWishlist } from "@/contexts/WishlistContext";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "@/contexts/LanguageContext";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { 
+  Drawer, 
+  DrawerContent, 
+  DrawerTrigger,
+  DrawerHeader,
+  DrawerTitle
+} from "@/components/ui/drawer";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Wishlist = () => {
@@ -127,18 +133,20 @@ const Wishlist = () => {
           </div>
         </DrawerTrigger>
         <DrawerContent className="px-4 pb-4 pt-6">
-          <div className="flex justify-between items-center">
-            <SheetTitle className="text-xl font-bold">{t.yourWishlist}</SheetTitle>
-            {wishlistItems.length > 0 && (
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={clearWishlist}
-              >
-                {t.clearAll}
-              </Button>
-            )}
-          </div>
+          <DrawerHeader className="p-0">
+            <div className="flex justify-between items-center">
+              <DrawerTitle className="text-xl font-bold">{t.yourWishlist}</DrawerTitle>
+              {wishlistItems.length > 0 && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={clearWishlist}
+                >
+                  {t.clearAll}
+                </Button>
+              )}
+            </div>
+          </DrawerHeader>
           <WishlistContent />
         </DrawerContent>
       </Drawer>
