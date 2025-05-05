@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, User, Menu, X, Earth } from "lucide-react";
+import { Search, User, Menu, X, Earth, Heart, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Auth from '@/components/Auth';
 import { 
@@ -41,6 +41,7 @@ const Navbar = () => {
     e.preventDefault();
     if (searchQuery.trim()) {
       performSearch(searchQuery);
+      closeMobileMenu();
     }
   };
 
@@ -68,7 +69,9 @@ const Navbar = () => {
       support: "Support",
       myAccount: "My Account",
       search: "Search for events, artists, teams...",
-      close: "Close Menu"
+      close: "Close Menu",
+      wishlist: "Wishlist",
+      cart: "Cart"
     },
     ar: {
       concerts: "حفلات",
@@ -82,7 +85,9 @@ const Navbar = () => {
       support: "الدعم",
       myAccount: "حسابي",
       search: "ابحث عن الفعاليات والفنانين والفرق...",
-      close: "أغلق القائمة"
+      close: "أغلق القائمة",
+      wishlist: "قائمة الأمنيات",
+      cart: "عربة التسوق"
     }
   };
 
@@ -286,14 +291,36 @@ const Navbar = () => {
             </a>
 
             {/* Mobile Wishlist and Cart */}
-            <div className="flex justify-between py-4">
-              <div onClick={closeMobileMenu} className="flex-1 text-center">
-                <Wishlist />
-                <span className="block mt-1 text-xs">Wishlist</span>
+            <div className="grid grid-cols-2 gap-4 py-4">
+              <div className="text-center">
+                <button 
+                  className="flex flex-col items-center justify-center w-full"
+                  onClick={() => {
+                    const wishlistTriggerButton = document.querySelector('[data-wishlist-trigger="true"]');
+                    if (wishlistTriggerButton && wishlistTriggerButton instanceof HTMLButtonElement) {
+                      wishlistTriggerButton.click();
+                    }
+                    closeMobileMenu();
+                  }}
+                >
+                  <Heart size={24} className="mb-1" />
+                  <span className="text-sm">{t.wishlist}</span>
+                </button>
               </div>
-              <div onClick={closeMobileMenu} className="flex-1 text-center">
-                <Cart />
-                <span className="block mt-1 text-xs">Cart</span>
+              <div className="text-center">
+                <button 
+                  className="flex flex-col items-center justify-center w-full"
+                  onClick={() => {
+                    const cartTriggerButton = document.querySelector('[data-cart-trigger="true"]');
+                    if (cartTriggerButton && cartTriggerButton instanceof HTMLButtonElement) {
+                      cartTriggerButton.click();
+                    }
+                    closeMobileMenu();
+                  }}
+                >
+                  <ShoppingCart size={24} className="mb-1" />
+                  <span className="text-sm">{t.cart}</span>
+                </button>
               </div>
             </div>
           </div>

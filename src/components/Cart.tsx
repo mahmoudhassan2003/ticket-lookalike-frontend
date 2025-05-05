@@ -62,7 +62,7 @@ const Cart = () => {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <div className="relative">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" data-cart-trigger="true">
             <ShoppingCart size={20} />
           </Button>
           {getTotalItems() > 0 && (

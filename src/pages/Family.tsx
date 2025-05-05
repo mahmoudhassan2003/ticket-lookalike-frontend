@@ -13,7 +13,8 @@ const familyEvents = [
     date: "Dec 10-15, 2025",
     location: "Barclays Center, New York",
     image: "https://images.unsplash.com/photo-1580974852861-c381510bc98a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Family"
+    category: "Family",
+    price: 39.99
   },
   {
     id: "family-peppa", // Unique ID
@@ -21,7 +22,8 @@ const familyEvents = [
     date: "Nov 5, 2025",
     location: "The SSE Arena, London",
     image: "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Family"
+    category: "Family",
+    price: 29.99
   },
   {
     id: "family-science", // Unique ID
@@ -29,7 +31,8 @@ const familyEvents = [
     date: "Oct 22, 2025",
     location: "National Science Museum, Washington DC",
     image: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Family"
+    category: "Family",
+    price: 24.99
   },
   {
     id: "family-lego", // Unique ID
@@ -37,7 +40,8 @@ const familyEvents = [
     date: "Sep 18-25, 2025",
     location: "Convention Center, Chicago",
     image: "https://images.unsplash.com/photo-1560961911-ba7ef651a56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Family"
+    category: "Family",
+    price: 19.99
   },
   {
     id: "family-zoo", // Unique ID
@@ -45,7 +49,8 @@ const familyEvents = [
     date: "Aug 12, 2025",
     location: "San Diego Zoo",
     image: "https://images.unsplash.com/photo-1534442358476-22ebece702fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Family"
+    category: "Family",
+    price: 34.99
   },
   {
     id: "family-marvel", // Unique ID
@@ -53,7 +58,8 @@ const familyEvents = [
     date: "Jul 4, 2025",
     location: "Universal Studios, Orlando",
     image: "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Family"
+    category: "Family",
+    price: 49.99
   }
 ];
 
@@ -91,6 +97,7 @@ const Family = () => {
                   location={event.location}
                   image={event.image}
                   category={event.category}
+                  fromText={`From $${event.price}`}
                 />
               ))}
             </div>
