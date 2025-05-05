@@ -18,6 +18,9 @@ interface EventCardProps {
 }
 
 const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
+  // Add console logging to help debug routing issues
+  console.log(`Rendering EventCard with ID: ${id}`);
+  
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48 overflow-hidden">

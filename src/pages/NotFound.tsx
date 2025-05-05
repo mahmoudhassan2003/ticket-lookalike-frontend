@@ -15,7 +15,11 @@ const NotFound = () => {
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
-  }, [location.pathname]);
+    
+    // Additional debug information
+    console.log("Current location state:", location.state);
+    console.log("Current URL parameters:", location.search);
+  }, [location.pathname, location.search, location.state]);
 
   return (
     <div className="min-h-screen flex flex-col">

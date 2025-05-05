@@ -8,7 +8,7 @@ import EventCard from '../components/EventCard';
 
 const familyEvents = [
   {
-    id: "family-disney", 
+    id: "f2", // Updated to match ID in EventDetail.tsx
     title: "Disney on Ice",
     date: "Dec 10-15, 2025",
     location: "Barclays Center, New York",
