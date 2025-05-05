@@ -49,6 +49,11 @@ const Navbar = () => {
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }, [language]);
 
+  // Close mobile menu
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   // Translations based on the current language
   const translations = {
     en: {
@@ -62,7 +67,8 @@ const Navbar = () => {
       contact: "Contact",
       support: "Support",
       myAccount: "My Account",
-      search: "Search for events, artists, teams..."
+      search: "Search for events, artists, teams...",
+      close: "Close Menu"
     },
     ar: {
       concerts: "حفلات",
@@ -75,7 +81,8 @@ const Navbar = () => {
       contact: "اتصل بنا",
       support: "الدعم",
       myAccount: "حسابي",
-      search: "ابحث عن الفعاليات والفنانين والفرق..."
+      search: "ابحث عن الفعاليات والفنانين والفرق...",
+      close: "أغلق القائمة"
     }
   };
 
@@ -178,6 +185,19 @@ const Navbar = () => {
         isMobileMenuOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full"
       )}>
         <div className="py-4 space-y-4">
+          {/* Close button */}
+          <div className="flex justify-end">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="flex items-center text-gray-500" 
+              onClick={closeMobileMenu}
+            >
+              <X size={18} className="mr-1" />
+              {t.close}
+            </Button>
+          </div>
+
           <form onSubmit={handleSearch}>
             <div className="relative">
               <Search className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400`} size={18} />
@@ -194,47 +214,47 @@ const Navbar = () => {
             <Link 
               to="/concerts" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.concerts}</Link>
             <Link 
               to="/sports" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.sports}</Link>
             <Link 
               to="/theater" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.theater}</Link>
             <Link 
               to="/festivals" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.festivals}</Link>
             <Link 
               to="/comedy" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.comedy}</Link>
             <Link 
               to="/family" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.family}</Link>
             <Link 
               to="/near-me" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.nearMe}</Link>
             <Link 
               to="/contact" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.contact}</Link>
             <Link 
               to="/support" 
               className="block py-2 text-lg font-medium text-gray-900 border-b border-gray-200"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
             >{t.support}</Link>
             <div className="flex justify-between items-center py-2 text-lg font-medium text-gray-900 border-b border-gray-200">
               <span>Language</span>
@@ -264,6 +284,18 @@ const Navbar = () => {
             >
               <User size={20} className="mr-2" /> {t.myAccount}
             </a>
+
+            {/* Mobile Wishlist and Cart */}
+            <div className="flex justify-between py-4">
+              <div onClick={closeMobileMenu} className="flex-1 text-center">
+                <Wishlist />
+                <span className="block mt-1 text-xs">Wishlist</span>
+              </div>
+              <div onClick={closeMobileMenu} className="flex-1 text-center">
+                <Cart />
+                <span className="block mt-1 text-xs">Cart</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
