@@ -535,38 +535,6 @@ const allEvents = [
       { name: "Low Income Ticket", price: 475, available: 5000 }
     ]
   },
-  // Family
-{
-  id: "f2",
-  title: "Disney on Ice",
-  description: "A magical experience featuring your favorite Disney characters skating live.",
-  date: "Dec 10-15, 2025",
-  location: "Barclays Center, New York",
-  image: "https://images.unsplash.com/photo-1580974852861-c381510bc98a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  category: "Family",
-  price: 39.99
-},
-{
-  id: "f3",
-  title: "Peppa Pig Live Show",
-  description: "Bring the kids to this interactive, fun-filled performance with Peppa and friends!",
-  date: "Nov 5, 2025",
-  location: "The SSE Arena, London",
-  image: "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  category: "Family",
-  price: 29.99
-},
-{
-  id: "f4",
-  title: "Science Museum Family Day",
-  description: "An educational and fun day at the museum with interactive exhibits for all ages.",
-  date: "Oct 20, 2025",
-  location: "Science Museum, Chicago",
-  image: "https://images.unsplash.com/photo-1581091215367-59f0b3c58aa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  category: "Family",
-  price: 19.99
-},
-
   // Near Me
   {
     id: "n1",
