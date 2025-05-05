@@ -38,7 +38,8 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
           <MapPin size={14} className="mr-1" />
           <span>{location}</span>
         </div>
-        <div className="flex justify-end mt-2">
+        <div className="flex justify-between items-center mt-2">
+          {fromText && <span className="text-ticket-blue font-medium">{fromText}</span>}
           <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
             <Link to={`/event/${id}`}>Book Tickets</Link>
           </Button>
