@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 
 interface EventCardProps {
@@ -12,37 +13,41 @@ interface EventCardProps {
   image: string;
   category: string;
   isFeatured?: boolean;
-  fromText?: string;
+  fromText?: string; // Added optional fromText prop
 }
 
 const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
+  // Add console logging to help debug routing issues
+  console.log(`Rendering EventCard with ID: ${id}`);
+  
   return (
-    <Link to={`/event/${id}`}>
-      <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
-        <div className="relative h-48 overflow-hidden">
-          <img 
-            src={image} 
-            alt={title}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          />
+    <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
+      <div className="relative h-48 overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <CardContent className="p-4">
+        <Badge variant="outline" className="mb-2">{category}</Badge>
+        <h3 className="font-semibold text-lg mb-1">{title}</h3>
+        <div className="flex items-center text-sm text-gray-500 mb-1">
+          <Calendar size={14} className="mr-1" />
+          <span>{date}</span>
         </div>
-        <CardContent className="p-4">
-          <Badge className="mb-2">{category}</Badge>
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <div className="flex items-center text-sm text-gray-600 mt-1">
-            <Calendar className="w-4 h-4 mr-1" /> {date}
-          </div>
-          <div className="flex items-center text-sm text-gray-600 mt-1">
-            <MapPin className="w-4 h-4 mr-1" /> {location}
-          </div>
-          {fromText && (
-            <div className="mt-2 text-sm font-medium text-primary">
-              From ${fromText}
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    </Link>
+        <div className="flex items-center text-sm text-gray-500 mb-3">
+          <MapPin size={14} className="mr-1" />
+          <span>{location}</span>
+        </div>
+        <div className="flex justify-between items-center mt-2">
+          {fromText && <span className="text-ticket-blue font-medium">{fromText}</span>}
+          <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
+            <Link to={`/event/${id}`}>Book Tickets</Link>
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
