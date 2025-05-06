@@ -6,9 +6,10 @@ import CategoryNav from '../components/CategoryNav';
 import { Users } from "lucide-react";
 import EventCard from '../components/EventCard';
 
+// Ensure all IDs are consistent and follow the same pattern
 const familyEvents = [
   {
-    id: "f1", // Changed from f2 to f1 for consistency
+    id: "family-disney",
     title: "Disney on Ice",
     date: "Dec 10-15, 2025",
     location: "Barclays Center, New York",
@@ -17,7 +18,7 @@ const familyEvents = [
     price: 39.99
   },
   {
-    id: "f2", // Changed from f3 to f2
+    id: "family-peppa",
     title: "Peppa Pig Live Show",
     date: "Nov 5, 2025",
     location: "The SSE Arena, London",
@@ -26,7 +27,7 @@ const familyEvents = [
     price: 29.99
   },
   {
-    id: "f3", // Changed from f4 to f3
+    id: "family-science",
     title: "Family Science Festival",
     date: "Oct 22, 2025",
     location: "National Science Museum, Washington DC",
@@ -35,7 +36,7 @@ const familyEvents = [
     price: 24.99
   },
   {
-    id: "f4", // Changed from f5 to f4
+    id: "family-lego",
     title: "LEGO Exhibition",
     date: "Sep 18-25, 2025",
     location: "Convention Center, Chicago",
@@ -44,7 +45,7 @@ const familyEvents = [
     price: 19.99
   },
   {
-    id: "f5", // Changed from f6 to f5
+    id: "family-zoo",
     title: "Zoo Adventure Day",
     date: "Aug 12, 2025",
     location: "San Diego Zoo",
@@ -53,7 +54,7 @@ const familyEvents = [
     price: 34.99
   },
   {
-    id: "f6", // Changed from f7 to f6
+    id: "family-marvel",
     title: "Marvel Superhero Experience",
     date: "Jul 4, 2025",
     location: "Universal Studios, Orlando",
@@ -64,6 +65,11 @@ const familyEvents = [
 ];
 
 const Family = () => {
+  // Added console logging for debugging
+  React.useEffect(() => {
+    console.log("Family page events:", familyEvents);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

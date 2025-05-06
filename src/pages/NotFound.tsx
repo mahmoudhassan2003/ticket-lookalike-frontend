@@ -10,7 +10,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // Log the error but stay on the NotFound page
+    // Enhanced debugging information
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
@@ -21,6 +21,12 @@ const NotFound = () => {
     console.log("Current URL parameters:", location.search);
     console.log("Last part of URL path:", location.pathname.split('/').pop());
     console.log("Full path breakdown:", location.pathname.split('/'));
+    
+    // Parse event ID if applicable
+    const pathParts = location.pathname.split('/');
+    if (pathParts[1] === 'event' && pathParts[2]) {
+      console.log("Event ID from URL:", pathParts[2]);
+    }
   }, [location.pathname, location.search, location.state]);
 
   return (
