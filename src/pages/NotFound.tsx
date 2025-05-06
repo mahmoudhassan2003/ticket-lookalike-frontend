@@ -11,14 +11,15 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    // Super detailed debugging with all available info
+    console.error("===== 404 ERROR DETAILS =====");
+    console.error("Attempted route:", location.pathname);
+    
     // Get the event ID from the URL if it exists
     const pathParts = location.pathname.split('/');
     const isEventPath = pathParts[1] === 'event';
     const eventId = isEventPath ? pathParts[2] : null;
     
-    // Super detailed debugging with all available info
-    console.error("===== 404 ERROR DETAILS =====");
-    console.error("Attempted route:", location.pathname);
     console.error("Path parts:", pathParts);
     console.error("Is event path:", isEventPath);
     console.error("Event ID from URL:", eventId);

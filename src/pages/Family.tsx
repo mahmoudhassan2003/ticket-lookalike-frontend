@@ -6,7 +6,7 @@ import CategoryNav from '../components/CategoryNav';
 import { Users } from "lucide-react";
 import EventCard from '../components/EventCard';
 
-// Ensuring event IDs match exactly with those in EventDetail.tsx
+// Ensuring event IDs precisely match those in EventDetail.tsx
 const familyEvents = [
   {
     id: "f2", // This ID exactly matches the one in EventDetail.tsx
@@ -18,7 +18,7 @@ const familyEvents = [
     price: 39.99
   },
   {
-    id: "peppa-pig", // Using unique, descriptive IDs
+    id: "peppa-pig", // Using unique, descriptive IDs that match EventDetail.tsx
     title: "Peppa Pig Live Show",
     date: "Nov 5, 2025",
     location: "The SSE Arena, London",
@@ -65,10 +65,10 @@ const familyEvents = [
 ];
 
 const Family = () => {
-  // Added more detailed console logging for debugging
+  // Enhanced console logging for debugging
   React.useEffect(() => {
     console.log("Loading Family page with events:", familyEvents);
-    console.log("Event IDs being used:", familyEvents.map(event => event.id).join(", "));
+    console.log("Event IDs on Family page:", familyEvents.map(event => event.id));
   }, []);
 
   return (

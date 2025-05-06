@@ -18,11 +18,9 @@ interface EventCardProps {
 }
 
 const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
-  // Enhanced debugging for the event card routing
+  // Super detailed debugging for the event card routing
   console.log(`Rendering EventCard: ID=${id}, Title=${title}, Category=${category}`);
-  
-  // Always use the original ID as provided without modifications
-  console.log(`Using exact event ID for routing: ${id} for event: ${title}`);
+  console.log(`Event route will be: /event/${id}`);
   
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
@@ -49,7 +47,10 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
           <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
             <Link 
               to={`/event/${id}`} 
-              onClick={() => console.log(`Clicked event: ${title}, navigating to: /event/${id}`)}
+              onClick={() => {
+                console.log(`Clicked event: ${title}`);
+                console.log(`Navigating to: /event/${id}`);
+              }}
             >
               Book Tickets
             </Link>
