@@ -4,29 +4,39 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { toast } from "@/components/ui/use-toast";
 
 const NotFound = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // Enhanced debugging information
+    // Comprehensive debugging information with path analysis
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
     
+    const pathParts = location.pathname.split('/');
+    
+    // Check if this is an event path
+    if (pathParts[1] === 'event') {
+      const eventId = pathParts[2];
+      console.error(`Failed to find event with ID: ${eventId}`);
+      console.log("Event ID format:", eventId ? `Type: ${typeof eventId}, Length: ${eventId.length}` : "undefined");
+      
+      // Show toast with error information for debugging
+      toast({
+        title: "Event not found",
+        description: `Could not find event with ID: ${eventId}`,
+        variant: "destructive",
+      });
+    }
+    
     // Additional debug information
     console.log("Current location state:", location.state);
     console.log("Current URL parameters:", location.search);
-    console.log("Last part of URL path:", location.pathname.split('/').pop());
-    console.log("Full path breakdown:", location.pathname.split('/'));
-    
-    // Parse event ID if applicable
-    const pathParts = location.pathname.split('/');
-    if (pathParts[1] === 'event' && pathParts[2]) {
-      console.log("Event ID from URL:", pathParts[2]);
-    }
+    console.log("Full path breakdown:", pathParts);
   }, [location.pathname, location.search, location.state]);
 
   return (
