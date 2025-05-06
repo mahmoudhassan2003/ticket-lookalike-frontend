@@ -19,6 +19,8 @@ const NotFound = () => {
     // Additional debug information
     console.log("Current location state:", location.state);
     console.log("Current URL parameters:", location.search);
+    console.log("Last part of URL path:", location.pathname.split('/').pop());
+    console.log("Full path breakdown:", location.pathname.split('/'));
   }, [location.pathname, location.search, location.state]);
 
   return (

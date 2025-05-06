@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +14,7 @@ interface EventCardProps {
   image: string;
   category: string;
   isFeatured?: boolean;
-  fromText?: string; // Added optional fromText prop
+  fromText?: string;
 }
 
 const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
