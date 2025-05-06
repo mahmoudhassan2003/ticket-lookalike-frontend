@@ -11,33 +11,33 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    // Comprehensive debugging information with path analysis
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-    
+    // Get the event ID from the URL if it exists
     const pathParts = location.pathname.split('/');
+    const isEventPath = pathParts[1] === 'event';
+    const eventId = isEventPath ? pathParts[2] : null;
     
-    // Check if this is an event path
-    if (pathParts[1] === 'event') {
-      const eventId = pathParts[2];
-      console.error(`Failed to find event with ID: ${eventId}`);
-      console.log("Event ID format:", eventId ? `Type: ${typeof eventId}, Length: ${eventId.length}` : "undefined");
+    // Super detailed debugging with all available info
+    console.error("===== 404 ERROR DETAILS =====");
+    console.error("Attempted route:", location.pathname);
+    console.error("Path parts:", pathParts);
+    console.error("Is event path:", isEventPath);
+    console.error("Event ID from URL:", eventId);
+    console.error("URL search params:", location.search);
+    console.error("Location state:", location.state);
+    console.error("Full location object:", location);
+    
+    // Show toast notification about the error
+    if (isEventPath && eventId) {
+      console.error(`Failed to find event with ID: "${eventId}"`);
+      console.error("Event ID format:", eventId ? `Type: ${typeof eventId}, Length: ${eventId.length}` : "undefined");
       
-      // Show toast with error information for debugging
       toast({
         title: "Event not found",
-        description: `Could not find event with ID: ${eventId}`,
+        description: `Could not find event with ID: ${eventId}. Please check the event listing.`,
         variant: "destructive",
       });
     }
-    
-    // Additional debug information
-    console.log("Current location state:", location.state);
-    console.log("Current URL parameters:", location.search);
-    console.log("Full path breakdown:", pathParts);
-  }, [location.pathname, location.search, location.state]);
+  }, [location]);
 
   return (
     <div className="min-h-screen flex flex-col">

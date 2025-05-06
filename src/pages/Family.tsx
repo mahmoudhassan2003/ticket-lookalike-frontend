@@ -6,10 +6,10 @@ import CategoryNav from '../components/CategoryNav';
 import { Users } from "lucide-react";
 import EventCard from '../components/EventCard';
 
-// Use simple numbered IDs that match the pattern in other category pages (f1, f2, etc.)
+// Ensuring event IDs match exactly with those in EventDetail.tsx
 const familyEvents = [
   {
-    id: "f1",
+    id: "f2", // This ID exactly matches the one in EventDetail.tsx
     title: "Disney on Ice",
     date: "Dec 10-15, 2025",
     location: "Barclays Center, New York",
@@ -18,7 +18,7 @@ const familyEvents = [
     price: 39.99
   },
   {
-    id: "f2",
+    id: "peppa-pig", // Using unique, descriptive IDs
     title: "Peppa Pig Live Show",
     date: "Nov 5, 2025",
     location: "The SSE Arena, London",
@@ -27,7 +27,7 @@ const familyEvents = [
     price: 29.99
   },
   {
-    id: "f3",
+    id: "science-festival",
     title: "Family Science Festival",
     date: "Oct 22, 2025",
     location: "National Science Museum, Washington DC",
@@ -36,7 +36,7 @@ const familyEvents = [
     price: 24.99
   },
   {
-    id: "f4",
+    id: "lego-exhibition",
     title: "LEGO Exhibition",
     date: "Sep 18-25, 2025",
     location: "Convention Center, Chicago",
@@ -45,7 +45,7 @@ const familyEvents = [
     price: 19.99
   },
   {
-    id: "f5",
+    id: "zoo-adventure",
     title: "Zoo Adventure Day",
     date: "Aug 12, 2025",
     location: "San Diego Zoo",
@@ -54,7 +54,7 @@ const familyEvents = [
     price: 34.99
   },
   {
-    id: "f6",
+    id: "marvel-experience",
     title: "Marvel Superhero Experience",
     date: "Jul 4, 2025",
     location: "Universal Studios, Orlando",
@@ -68,7 +68,7 @@ const Family = () => {
   // Added more detailed console logging for debugging
   React.useEffect(() => {
     console.log("Loading Family page with events:", familyEvents);
-    console.log("Event IDs:", familyEvents.map(event => event.id).join(", "));
+    console.log("Event IDs being used:", familyEvents.map(event => event.id).join(", "));
   }, []);
 
   return (

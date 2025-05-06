@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -17,13 +18,11 @@ interface EventCardProps {
 }
 
 const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
-  // Add detailed debugging for the event card routing
+  // Enhanced debugging for the event card routing
   console.log(`Rendering EventCard: ID=${id}, Title=${title}, Category=${category}`);
   
-  // Generate a consistent ID format for routing by keeping only alphanumeric characters
-  // This ensures IDs work consistently with React Router
-  const routeId = id.includes('-') ? id.split('-')[0] : id;
-  console.log(`Generated route ID: ${routeId} for event: ${title}`);
+  // Always use the original ID as provided without modifications
+  console.log(`Using exact event ID for routing: ${id} for event: ${title}`);
   
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
@@ -49,8 +48,8 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
           {fromText && <span className="text-ticket-blue font-medium">{fromText}</span>}
           <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
             <Link 
-              to={`/event/${routeId}`} 
-              onClick={() => console.log(`Clicked event: ${title}, using route: /event/${routeId}, original ID: ${id}`)}
+              to={`/event/${id}`} 
+              onClick={() => console.log(`Clicked event: ${title}, navigating to: /event/${id}`)}
             >
               Book Tickets
             </Link>
