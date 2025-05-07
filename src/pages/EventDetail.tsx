@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -14,6 +13,24 @@ import { useCart, CartItem } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
 
 const allEvents = [
+  // Zoo Adventure Event (Added)
+  {
+    id: "zoo-adventure",
+    title: "Zoo Adventure Day",
+    description: "Explore the wonders of the animal kingdom in this family-friendly zoo adventure. Meet exotic animals from around the world, enjoy interactive exhibits, and learn about wildlife conservation efforts. Perfect for families and animal enthusiasts of all ages, this event includes guided tours, feeding demonstrations, and educational presentations throughout the day.",
+    date: "Jun 22, 2025",
+    time: "10:00 AM",
+    location: "City Zoo, Central Park",
+    image: "https://images.unsplash.com/photo-1503919005314-c3e766db4b73?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 25,
+    maxPrice: 65,
+    ticketLevels: [
+      { name: "VIP Experience", price: 65, available: 75 },
+      { name: "Family Pack (4 tickets)", price: 85, available: 120 },
+      { name: "Standard Admission", price: 25, available: 500 }
+    ]
+  },
   // Concerts
   {
     id: "c1",
