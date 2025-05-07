@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -450,13 +451,26 @@ const allEvents = [
   }
 ];
 
-export default function EventDetails() {
+export default function EventDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { language } = useContext(LanguageContext);
   const { addToCart } = useCart();
   const { addToWishlist } = useWishlist();
+  
+  // Add detailed debugging to diagnose the issue
+  console.log("EventDetail component rendering");
+  console.log("URL parameter ID:", id);
+  console.log("All available event IDs:", allEvents.map(e => e.id));
+  
+  useEffect(() => {
+    console.log("EventDetail useEffect running");
+    console.log("Looking for event with ID:", id);
+    const matchingEvents = allEvents.filter(e => e.id === id);
+    console.log("Matching events found:", matchingEvents.length);
+    console.log("Matching events:", matchingEvents);
+  }, [id]);
   
   // Default to first ticket if available
   const handleAddToCart = () => {
@@ -474,6 +488,10 @@ export default function EventDetails() {
         date: event.date
       };
       addToCart(cartItem);
+      toast({
+        title: "Added to cart",
+        description: `${event.title} has been added to your cart.`,
+      });
     }
   };
   
@@ -490,16 +508,40 @@ export default function EventDetails() {
         price: event.minPrice // Using minimum price for wishlist
       };
       addToWishlist(wishlistItem);
+      toast({
+        title: "Added to wishlist",
+        description: `${event.title} has been added to your wishlist.`,
+      });
     }
   };
 
-  const currentEvent = allEvents.find(event => event.id === id);
+  // Use String comparison to ensure IDs match correctly
+  const currentEvent = allEvents.find(event => String(event.id) === String(id));
+  
+  // More debugging
+  console.log("Current event found:", currentEvent ? "Yes" : "No");
+  if (currentEvent) {
+    console.log("Event details:", {
+      id: currentEvent.id,
+      title: currentEvent.title
+    });
+  }
+  
   if (!currentEvent) {
+    console.log("NO EVENT FOUND WITH ID:", id);
+    console.log("Available IDs:", allEvents.map(e => e.id));
     return (
       <div>
         <Navbar />
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold mb-4">Event not found</h1>
+          <p className="text-gray-600 mb-4">We couldn't find an event with ID: {id}</p>
+          <Button 
+            className="bg-ticket-blue hover:bg-ticket-lightBlue"
+            onClick={() => navigate("/")}
+          >
+            Return to Home
+          </Button>
         </div>
         <Footer />
       </div>
