@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -13,8 +12,77 @@ import { Label } from "@/components/ui/label";
 import { useCart, CartItem } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
 
+// IMPORTANT: Make sure all event IDs are unique and match across the entire application
 const allEvents = [
-  // Zoo Adventure Event (Added)
+  // Family Events (Adding all family events to ensure they're findable)
+  {
+    id: "f2",
+    title: "Disney on Ice",
+    description: "Experience the magic of Disney on Ice with all your favorite characters. This enchanting show combines world-class ice skating with beloved Disney stories and music. Watch as Mickey, Minnie, and friends take you through magical Disney moments from classics like Frozen, The Lion King, and more. Perfect for audiences of all ages, this spectacular event features stunning choreography, elaborate costumes, and special effects that bring Disney magic to life on ice.",
+    date: "Dec 10-15, 2025",
+    time: "7:30 PM",
+    location: "Barclays Center, New York",
+    image: "https://images.unsplash.com/photo-1580974852861-c381510bc98a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 40,
+    maxPrice: 150,
+    ticketLevels: [
+      { name: "Premium Seats", price: 150, available: 100 },
+      { name: "Standard Admission", price: 85, available: 500 },
+      { name: "Family Package", price: 40, available: 250 }
+    ]
+  },
+  {
+    id: "peppa-pig",
+    title: "Peppa Pig Live Show",
+    description: "Join Peppa Pig and her friends for a fun-filled day of adventure in this interactive live show perfect for young children. This charming production brings the beloved characters from the hit TV show to life through puppetry, music, and audience participation. Children will be delighted as they sing along to familiar songs and watch Peppa's world unfold before their eyes. The show is specially designed for preschool audiences with just the right length and engagement level to keep little ones entertained throughout.",
+    date: "Nov 5, 2025",
+    time: "2:00 PM",
+    location: "The SSE Arena, London",
+    image: "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 30,
+    maxPrice: 80,
+    ticketLevels: [
+      { name: "VIP Meet & Greet", price: 80, available: 50 },
+      { name: "Standard Admission", price: 45, available: 300 },
+      { name: "Group Discount", price: 30, available: 100 }
+    ]
+  },
+  {
+    id: "science-festival",
+    title: "Family Science Festival",
+    description: "Explore the wonders of science with hands-on exhibits and exciting demonstrations at this educational and entertaining festival for the whole family. This interactive event features experiments, robotics displays, physics demonstrations, and opportunities to meet real scientists working in various fields. Children and adults alike will be fascinated by exhibits that make complex scientific concepts accessible and engaging. The festival is designed to spark curiosity about the natural world and inspire the next generation of scientists and engineers.",
+    date: "Oct 22, 2025",
+    time: "10:00 AM",
+    location: "National Science Museum, Washington DC",
+    image: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 25,
+    maxPrice: 60,
+    ticketLevels: [
+      { name: "All-Access Pass", price: 60, available: 200 },
+      { name: "Standard Admission", price: 35, available: 500 },
+      { name: "Child Ticket (5-12)", price: 25, available: 400 }
+    ]
+  },
+  {
+    id: "lego-exhibition",
+    title: "LEGO Exhibition",
+    description: "Marvel at incredible LEGO creations built by master builders, featuring millions of bricks transformed into spectacular art installations and interactive displays. This exhibition showcases intricate LEGO models of famous landmarks, fantasy worlds, and engineering marvels constructed with astonishing detail and creativity. Visitors can also participate in building challenges, contribute to community LEGO projects, and learn building techniques from experts. The exhibition celebrates the endless possibilities of these beloved plastic bricks and demonstrates how they continue to inspire creativity across generations.",
+    date: "Sep 18-25, 2025",
+    time: "9:00 AM",
+    location: "Convention Center, Chicago",
+    image: "https://images.unsplash.com/photo-1560961911-ba7ef651a56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 20,
+    maxPrice: 50,
+    ticketLevels: [
+      { name: "Premium Package", price: 50, available: 100 },
+      { name: "Standard Admission", price: 30, available: 500 },
+      { name: "Child Ticket (3-12)", price: 20, available: 300 }
+    ]
+  },
   {
     id: "zoo-adventure",
     title: "Zoo Adventure Day",
@@ -30,6 +98,23 @@ const allEvents = [
       { name: "VIP Experience", price: 65, available: 75 },
       { name: "Family Pack (4 tickets)", price: 85, available: 120 },
       { name: "Standard Admission", price: 25, available: 500 }
+    ]
+  },
+  {
+    id: "marvel-experience",
+    title: "Marvel Superhero Experience",
+    description: "Immerse yourself in the world of Marvel superheroes with interactive exhibits, movie props, and thrilling live performances. This action-packed event brings your favorite Marvel characters to life through immersive technologies, stunt shows, and hands-on activities that let visitors experience superhero powers firsthand. Fans can take photos with costumed characters, view rare comic book collections, and explore detailed recreations of iconic scenes from the Marvel universe. With attractions designed for all ages, this experience celebrates the enduring appeal of these beloved characters and their stories.",
+    date: "Jul 4, 2025",
+    time: "11:00 AM",
+    location: "Universal Studios, Orlando",
+    image: "https://images.unsplash.com/photo-1569003339405-ea396a5a8a90?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 50,
+    maxPrice: 120,
+    ticketLevels: [
+      { name: "Ultimate Hero Package", price: 120, available: 50 },
+      { name: "Standard Admission", price: 70, available: 300 },
+      { name: "Child Ticket (3-12)", price: 50, available: 200 }
     ]
   },
   // Concerts
@@ -452,29 +537,44 @@ const allEvents = [
 ];
 
 export default function EventDetail() {
-  const { id } = useParams();
+  const { eventId } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
   const { language } = useContext(LanguageContext);
   const { addToCart } = useCart();
   const { addToWishlist } = useWishlist();
   
-  // Add detailed debugging to diagnose the issue
+  // Super detailed debugging to diagnose the issue
   console.log("EventDetail component rendering");
-  console.log("URL parameter ID:", id);
+  console.log("URL parameter eventId:", eventId);
+  console.log("eventId type:", typeof eventId);
   console.log("All available event IDs:", allEvents.map(e => e.id));
   
   useEffect(() => {
     console.log("EventDetail useEffect running");
-    console.log("Looking for event with ID:", id);
-    const matchingEvents = allEvents.filter(e => e.id === id);
-    console.log("Matching events found:", matchingEvents.length);
-    console.log("Matching events:", matchingEvents);
-  }, [id]);
+    console.log("Looking for event with ID:", eventId);
+    
+    // Check exact string matching
+    const exactMatches = allEvents.filter(e => e.id === eventId);
+    console.log("Exact ID matches found:", exactMatches.length);
+    
+    // Try other comparisons for debugging
+    const looseMatches = allEvents.filter(e => String(e.id).toLowerCase() === String(eventId).toLowerCase());
+    console.log("Case-insensitive matches found:", looseMatches.length);
+    
+    if (exactMatches.length === 0 && looseMatches.length > 0) {
+      console.log("Found case-insensitive match but not exact match. Check your event IDs!");
+    }
+    
+    console.log("All event IDs for reference:");
+    allEvents.forEach((e, index) => {
+      console.log(`${index}: "${e.id}" (${typeof e.id}, length: ${e.id.length})`);
+    });
+  }, [eventId]);
   
   // Default to first ticket if available
   const handleAddToCart = () => {
-    const event = allEvents.find(event => event.id === id);
+    const event = allEvents.find(event => event.id === eventId);
     if (event) {
       // Select the first ticket level by default
       const defaultTicket = event.ticketLevels[0];
@@ -496,7 +596,7 @@ export default function EventDetail() {
   };
   
   const handleAddToWishlist = () => {
-    const event = allEvents.find(event => event.id === id);
+    const event = allEvents.find(event => event.id === eventId);
     if (event) {
       const wishlistItem = {
         id: event.id,
@@ -515,27 +615,39 @@ export default function EventDetail() {
     }
   };
 
-  // Use String comparison to ensure IDs match correctly
-  const currentEvent = allEvents.find(event => String(event.id) === String(id));
+  // Explicitly cast both to strings and trim to ensure proper comparison
+  const currentEvent = allEvents.find(event => 
+    String(event.id).trim() === String(eventId).trim()
+  );
   
-  // More debugging
+  // Detailed debugging
   console.log("Current event found:", currentEvent ? "Yes" : "No");
   if (currentEvent) {
     console.log("Event details:", {
       id: currentEvent.id,
-      title: currentEvent.title
+      title: currentEvent.title,
+      category: currentEvent.category
     });
+  } else {
+    console.log("NO EVENT FOUND WITH ID:", eventId);
+    console.log("Available IDs:", allEvents.map(e => e.id));
+    
+    // Log ID comparison details for the first few events
+    console.log("ID comparison details:");
+    for (let i = 0; i < Math.min(5, allEvents.length); i++) {
+      const event = allEvents[i];
+      console.log(`Comparing "${event.id}" (${typeof event.id}) with "${eventId}" (${typeof eventId}): ${event.id === eventId}`);
+      console.log(`String comparison: "${String(event.id)}" === "${String(eventId)}": ${String(event.id) === String(eventId)}`);
+    }
   }
   
   if (!currentEvent) {
-    console.log("NO EVENT FOUND WITH ID:", id);
-    console.log("Available IDs:", allEvents.map(e => e.id));
     return (
       <div>
         <Navbar />
         <div className="container mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold mb-4">Event not found</h1>
-          <p className="text-gray-600 mb-4">We couldn't find an event with ID: {id}</p>
+          <p className="text-gray-600 mb-4">We couldn't find an event with ID: {eventId}</p>
           <Button 
             className="bg-ticket-blue hover:bg-ticket-lightBlue"
             onClick={() => navigate("/")}
@@ -552,48 +664,87 @@ export default function EventDetail() {
     <div>
       <Navbar />
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-4">{language === "en" ? "Event Details" : "Details de l'événement"}</h1>
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="mb-6">
+          <Button variant="outline" onClick={() => navigate(-1)} className="flex items-center">
+            <ArrowLeft size={16} className="mr-2" />
+            Back
+          </Button>
+        </div>
+        
+        <div className="flex flex-col md:flex-row items-start gap-8">
           <div className="md:w-1/2">
             <img src={currentEvent.image} alt={currentEvent.title} className="w-full rounded-lg shadow-lg" />
           </div>
-          <div className="md:w-1/2 ml-4">
-            <h2 className="text-2xl font-bold mb-2">{currentEvent.title}</h2>
-            <p className="text-gray-600 mb-4">{currentEvent.description}</p>
-            <div className="flex items-center mb-4">
-              <Calendar className="mr-2" />
-              <p className="text-gray-600">{currentEvent.date}</p>
+          <div className="md:w-1/2">
+            <Badge variant="outline" className="mb-2">{currentEvent.category}</Badge>
+            <h1 className="text-3xl font-bold mb-4">{currentEvent.title}</h1>
+            <p className="text-gray-600 mb-6">{currentEvent.description}</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="flex items-center">
+                <Calendar className="mr-2 text-ticket-blue" />
+                <div>
+                  <p className="text-sm text-gray-500">Date</p>
+                  <p className="font-medium">{currentEvent.date}</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center">
+                <Clock className="mr-2 text-ticket-blue" />
+                <div>
+                  <p className="text-sm text-gray-500">Time</p>
+                  <p className="font-medium">{currentEvent.time}</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center col-span-1 md:col-span-2">
+                <MapPin className="mr-2 text-ticket-blue" />
+                <div>
+                  <p className="text-sm text-gray-500">Location</p>
+                  <p className="font-medium">{currentEvent.location}</p>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center mb-4">
-              <Clock className="mr-2" />
-              <p className="text-gray-600">{currentEvent.time}</p>
+            
+            <div className="mb-6">
+              <h2 className="text-xl font-semibold mb-3">Tickets Available</h2>
+              <div className="border rounded-lg divide-y">
+                {currentEvent.ticketLevels.map((ticket, index) => (
+                  <div key={index} className="p-4 flex justify-between items-center">
+                    <div>
+                      <p className="font-medium">{ticket.name}</p>
+                      <p className="text-sm text-gray-500">{ticket.available} remaining</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-lg font-bold text-ticket-blue">${ticket.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="flex items-center mb-4">
-              <MapPin className="mr-2" />
-              <p className="text-gray-600">{currentEvent.location}</p>
-            </div>
-            <div className="flex items-center mb-4">
-              <Badge variant="outline" className="mr-2">
-                {currentEvent.category}
-              </Badge>
-              <p className="text-gray-600">${currentEvent.minPrice} - ${currentEvent.maxPrice}</p>
-            </div>
-            <div className="flex items-center mb-4 gap-2">
-              <Button variant="outline" onClick={handleAddToCart}>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <Button 
+                className="w-full sm:w-auto bg-ticket-blue hover:bg-ticket-lightBlue flex items-center justify-center"
+                onClick={handleAddToCart}
+              >
                 <Ticket className="mr-2" />
                 Add to Cart
               </Button>
-              <Button variant="outline" onClick={handleAddToWishlist}>
+              
+              <Button 
+                variant="outline" 
+                className="w-full sm:w-auto border-ticket-blue text-ticket-blue hover:bg-ticket-blue/10 flex items-center justify-center"
+                onClick={handleAddToWishlist}
+              >
                 <Heart className="mr-2" />
                 Add to Wishlist
               </Button>
-            </div>
-            <div className="flex items-center mb-4 gap-2">
-              <Button variant="outline" onClick={() => navigate(`/event/${id}/tickets`)}>
-                <Ticket className="mr-2" />
-                View Tickets
-              </Button>
-              <Button variant="outline" onClick={() => navigate(`/event/${id}/reviews`)}>
+              
+              <Button 
+                variant="outline"
+                className="w-full sm:w-auto flex items-center justify-center"
+              >
                 <Share2 className="mr-2" />
                 Share
               </Button>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { toast } from "@/components/ui/use-toast";
+import { AlertTriangle } from "lucide-react";
 
 const NotFound = () => {
   const location = useLocation();
@@ -25,7 +26,6 @@ const NotFound = () => {
     console.error("Event ID from URL:", eventId);
     console.error("URL search params:", location.search);
     console.error("Location state:", location.state);
-    console.error("Full location object:", location);
     
     // Show toast notification about the error
     if (isEventPath && eventId) {
@@ -46,11 +46,20 @@ const NotFound = () => {
       
       <main className="flex-grow flex items-center justify-center bg-gray-50 py-16">
         <div className="text-center px-4">
-          <h1 className="text-6xl font-bold text-ticket-blue mb-4">404</h1>
-          <p className="text-2xl text-gray-700 mb-8">Oops! We couldn't find that page</p>
-          <p className="text-gray-600 mb-8 max-w-lg mx-auto">
-            The page you're looking for might have been removed, had its name changed, 
-            or is temporarily unavailable.
+          <div className="flex justify-center mb-4">
+            <AlertTriangle size={48} className="text-red-500" />
+          </div>
+          <h1 className="text-4xl font-bold text-ticket-blue mb-4">404</h1>
+          <h2 className="text-2xl text-gray-700 mb-4">Event not found</h2>
+          <p className="text-gray-600 mb-4 max-w-lg mx-auto">
+            We couldn't find the event you're looking for. The event might have been removed or the URL might be incorrect.
+          </p>
+          <p className="text-sm text-gray-500 mb-8">
+            {location.pathname.includes('event/') && (
+              <>
+                Attempted to load event with ID: <span className="font-mono bg-gray-100 px-1 rounded">{location.pathname.split('/')[2]}</span>
+              </>
+            )}
           </p>
           <Button 
             className="bg-ticket-blue hover:bg-ticket-lightBlue"

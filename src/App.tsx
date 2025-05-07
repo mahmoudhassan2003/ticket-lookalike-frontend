@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import Support from "./pages/Support";
@@ -59,6 +59,9 @@ const App = () => (
                   <Route path="/event/:eventId" element={<EventDetail />} />
                   <Route path="/search-results" element={<SearchResults />} />
                   
+                  {/* Redirect legacy URLs if needed */}
+                  <Route path="/event/undefined" element={<Navigate to="/404" replace />} />
+                  
                   {/* About Us Footer Links */}
                   <Route path="/about" element={<About />} />
                   <Route path="/careers" element={<Careers />} />
@@ -73,6 +76,9 @@ const App = () => (
                   <Route path="/shipping" element={<Shipping />} />
                   <Route path="/returns" element={<Returns />} />
                   <Route path="/faq" element={<FAQ />} />
+                  
+                  {/* Explicit 404 route */}
+                  <Route path="/404" element={<NotFound />} />
                   
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />

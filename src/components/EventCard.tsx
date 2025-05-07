@@ -23,6 +23,9 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
   console.log(`Rendering EventCard: ID=${id}, Title=${title}, Category=${category}`);
   console.log(`Event route will be: /event/${id}`);
   
+  // Create a direct variable for the URL to ensure consistency
+  const eventUrl = `/event/${id}`;
+  
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48 overflow-hidden">
@@ -47,10 +50,10 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
           {fromText && <span className="text-ticket-blue font-medium">{fromText}</span>}
           <Button size="sm" variant="outline" asChild className="text-ticket-blue border-ticket-blue hover:bg-ticket-blue hover:text-white">
             <Link 
-              to={`/event/${id}`} 
+              to={eventUrl} 
               onClick={() => {
                 console.log(`Clicked event: ${title} with ID: ${id}`);
-                console.log(`Navigating to: /event/${id}`);
+                console.log(`Navigating to: ${eventUrl}`);
               }}
             >
               Book Tickets
