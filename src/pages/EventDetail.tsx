@@ -416,4 +416,84 @@ const allEvents = [
   {
     id: "comedy-schumer",
     title: "Amy Schumer Live",
-    description: "Award-winning comedian, actress, and writer Amy Schumer brings her bold and unapologetic
+    description: "Award-winning comedian, actress, and writer Amy Schumer brings her bold and unapologetic comedy to this exclusive live show. Known for her fearless approach to controversial topics and personal stories, Schumer delivers a night of laugh-out-loud entertainment that combines sharp social commentary with disarming honesty. Her unique perspective on relationships, body image, and modern culture has made her one of today's most influential comic voices. Don't miss this opportunity to see one of comedy's most authentic and hilarious performers live on stage.",
+    date: "Feb 14, 2026",
+    location: "Hollywood Bowl, Los Angeles",
+    time: "8:00 PM",
+    image: "https://images.unsplash.com/photo-1508252592163-5d3c3c559269?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    minPrice: 70,
+    maxPrice: 190,
+    ticketLevels: [
+      { name: "VIP Experience", price: 190, available: 90 },
+      { name: "Premium Seats", price: 120, available: 250 },
+      { name: "Standard Admission", price: 70, available: 700 }
+    ]
+  }
+];
+
+export default function EventDetails() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const { language } = useContext(LanguageContext);
+  const { addToCart } = useCart();
+  const { addToWishlist } = useWishlist();
+
+  return (
+    <div>
+      <Navbar />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-4">{language === "en" ? "Event Details" : "Details de l'événement"}</h1>
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="md:w-1/2">
+            <img src={allEvents.find(event => event.id === id).image} alt={allEvents.find(event => event.id === id).title} className="w-full rounded-lg shadow-lg" />
+          </div>
+          <div className="md:w-1/2 ml-4">
+            <h2 className="text-2xl font-bold mb-2">{allEvents.find(event => event.id === id).title}</h2>
+            <p className="text-gray-600 mb-4">{allEvents.find(event => event.id === id).description}</p>
+            <div className="flex items-center mb-4">
+              <Calendar className="mr-2" />
+              <p className="text-gray-600">{allEvents.find(event => event.id === id).date}</p>
+            </div>
+            <div className="flex items-center mb-4">
+              <Clock className="mr-2" />
+              <p className="text-gray-600">{allEvents.find(event => event.id === id).time}</p>
+            </div>
+            <div className="flex items-center mb-4">
+              <MapPin className="mr-2" />
+              <p className="text-gray-600">{allEvents.find(event => event.id === id).location}</p>
+            </div>
+            <div className="flex items-center mb-4">
+              <Badge variant="outline" className="mr-2">
+                {allEvents.find(event => event.id === id).category}
+              </Badge>
+              <p className="text-gray-600">{allEvents.find(event => event.id === id).minPrice} - {allEvents.find(event => event.id === id).maxPrice}</p>
+            </div>
+            <div className="flex items-center mb-4">
+              <Button variant="outline" onClick={() => addToCart(allEvents.find(event => event.id === id))}>
+                <Heart className="mr-2" />
+                Add to Cart
+              </Button>
+              <Button variant="outline" onClick={() => addToWishlist(allEvents.find(event => event.id === id))}>
+                <Heart className="mr-2" />
+                Add to Wishlist
+              </Button>
+            </div>
+            <div className="flex items-center mb-4">
+              <Button variant="outline" onClick={() => navigate(`/event/${id}/tickets`)}>
+                <Ticket className="mr-2" />
+                View Tickets
+              </Button>
+              <Button variant="outline" onClick={() => navigate(`/event/${id}/reviews`)}>
+                <Share2 className="mr-2" />
+                Share
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+}
