@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -9,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { LanguageContext } from "../contexts/LanguageContext";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useCart } from "@/contexts/CartContext";
+import { useCart, CartItem } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
 
 const allEvents = [
@@ -439,6 +440,54 @@ export default function EventDetails() {
   const { language } = useContext(LanguageContext);
   const { addToCart } = useCart();
   const { addToWishlist } = useWishlist();
+  
+  // Default to first ticket if available
+  const handleAddToCart = () => {
+    const event = allEvents.find(event => event.id === id);
+    if (event) {
+      // Select the first ticket level by default
+      const defaultTicket = event.ticketLevels[0];
+      const cartItem: CartItem = {
+        id: event.id,
+        title: event.title,
+        quantity: 1,
+        price: defaultTicket.price,
+        ticketType: defaultTicket.name,
+        image: event.image,
+        date: event.date
+      };
+      addToCart(cartItem);
+    }
+  };
+  
+  const handleAddToWishlist = () => {
+    const event = allEvents.find(event => event.id === id);
+    if (event) {
+      const wishlistItem = {
+        id: event.id,
+        title: event.title,
+        image: event.image,
+        date: event.date,
+        location: event.location,
+        category: event.category,
+        price: event.minPrice // Using minimum price for wishlist
+      };
+      addToWishlist(wishlistItem);
+    }
+  };
+
+  const currentEvent = allEvents.find(event => event.id === id);
+  if (!currentEvent) {
+    return (
+      <div>
+        <Navbar />
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-3xl font-bold mb-4">Event not found</h1>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -447,40 +496,40 @@ export default function EventDetails() {
         <h1 className="text-3xl font-bold mb-4">{language === "en" ? "Event Details" : "Details de l'événement"}</h1>
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/2">
-            <img src={allEvents.find(event => event.id === id).image} alt={allEvents.find(event => event.id === id).title} className="w-full rounded-lg shadow-lg" />
+            <img src={currentEvent.image} alt={currentEvent.title} className="w-full rounded-lg shadow-lg" />
           </div>
           <div className="md:w-1/2 ml-4">
-            <h2 className="text-2xl font-bold mb-2">{allEvents.find(event => event.id === id).title}</h2>
-            <p className="text-gray-600 mb-4">{allEvents.find(event => event.id === id).description}</p>
+            <h2 className="text-2xl font-bold mb-2">{currentEvent.title}</h2>
+            <p className="text-gray-600 mb-4">{currentEvent.description}</p>
             <div className="flex items-center mb-4">
               <Calendar className="mr-2" />
-              <p className="text-gray-600">{allEvents.find(event => event.id === id).date}</p>
+              <p className="text-gray-600">{currentEvent.date}</p>
             </div>
             <div className="flex items-center mb-4">
               <Clock className="mr-2" />
-              <p className="text-gray-600">{allEvents.find(event => event.id === id).time}</p>
+              <p className="text-gray-600">{currentEvent.time}</p>
             </div>
             <div className="flex items-center mb-4">
               <MapPin className="mr-2" />
-              <p className="text-gray-600">{allEvents.find(event => event.id === id).location}</p>
+              <p className="text-gray-600">{currentEvent.location}</p>
             </div>
             <div className="flex items-center mb-4">
               <Badge variant="outline" className="mr-2">
-                {allEvents.find(event => event.id === id).category}
+                {currentEvent.category}
               </Badge>
-              <p className="text-gray-600">{allEvents.find(event => event.id === id).minPrice} - {allEvents.find(event => event.id === id).maxPrice}</p>
+              <p className="text-gray-600">${currentEvent.minPrice} - ${currentEvent.maxPrice}</p>
             </div>
-            <div className="flex items-center mb-4">
-              <Button variant="outline" onClick={() => addToCart(allEvents.find(event => event.id === id))}>
-                <Heart className="mr-2" />
+            <div className="flex items-center mb-4 gap-2">
+              <Button variant="outline" onClick={handleAddToCart}>
+                <Ticket className="mr-2" />
                 Add to Cart
               </Button>
-              <Button variant="outline" onClick={() => addToWishlist(allEvents.find(event => event.id === id))}>
+              <Button variant="outline" onClick={handleAddToWishlist}>
                 <Heart className="mr-2" />
                 Add to Wishlist
               </Button>
             </div>
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-4 gap-2">
               <Button variant="outline" onClick={() => navigate(`/event/${id}/tickets`)}>
                 <Ticket className="mr-2" />
                 View Tickets
