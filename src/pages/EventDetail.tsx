@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -654,278 +653,60 @@ const allEvents = [
       { name: "Lower Bowl", price: 85, available: 620 },
       { name: "Upper Bowl", price: 45, available: 1300 }
     ]
-  }
-];
-
-const EventDetail = () => {
-  const { eventId } = useParams();
-  const { toast } = useToast();
-  const navigate = useNavigate();
-  const { language } = useContext(LanguageContext);
-  const { addToCart } = useCart();
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
-  const isRTL = language === 'ar';
-  const [quantity, setQuantity] = useState(1);
-  const [selectedTicketType, setSelectedTicketType] = useState(0);
-
-  // Find the event by ID
-  const event = allEvents.find(e => e.id === eventId);
-  
-  // If event doesn't exist, redirect to 404
-  useEffect(() => {
-    if (!event && eventId) {
-      navigate('/not-found');
-    }
-  }, [event, eventId, navigate]);
-  
-  // Return early if no event found
-  if (!event) {
-    return null;
-  }
-  
-  const eventInWishlist = isInWishlist(event.id);
-  
-  const translations = {
-    en: {
-      bookTickets: "Book Tickets",
-      ticketsAvailable: "Tickets Available",
-      date: "Date",
-      time: "Time",
-      venue: "Venue",
-      backToEvents: "Back to Events",
-      shareEvent: "Share Event",
-      addToWishlist: "Add to Wishlist",
-      removeFromWishlist: "Remove from Wishlist",
-      selectTickets: "Select Tickets",
-      quantity: "Quantity",
-      totalPrice: "Total Price",
-      proceedToCheckout: "Add to Cart",
-      categoryLabel: "Event Type",
-      ticketsAdded: "Tickets added to cart!",
-      ticketsAddedDesc: "You can proceed to checkout now.",
-    },
-    ar: {
-      bookTickets: "حجز التذاكر",
-      ticketsAvailable: "التذاكر المتاحة",
-      date: "التاريخ",
-      time: "الوقت",
-      venue: "المكان",
-      backToEvents: "العودة إلى الفعاليات",
-      shareEvent: "مشاركة الحدث",
-      addToWishlist: "أضف إلى المفضلة",
-      removeFromWishlist: "إزالة من المفضلة",
-      selectTickets: "اختر التذاكر",
-      quantity: "الكمية",
-      totalPrice: "السعر الإجمالي",
-      proceedToCheckout: "أضف إلى العربة",
-      categoryLabel: "نوع الحدث",
-      ticketsAdded: "تمت إضافة التذاكر إلى سلة التسوق!",
-      ticketsAddedDesc: "يمكنك المتابعة إلى الدفع الآن.",
-    }
-  };
-  
-  const t = translations[language];
-  
-  const handleBooking = () => {
-    addToCart({
-      id: event.id,
-      title: event.title,
-      quantity: quantity,
-      price: event.ticketLevels[selectedTicketType].price,
-      ticketType: event.ticketLevels[selectedTicketType].name,
-      image: event.image,
-      date: event.date
-    });
-    
-    toast({
-      title: t.ticketsAdded,
-      description: t.ticketsAddedDesc,
-    });
-  };
-  
-  const calculateTotal = () => {
-    return (event.ticketLevels[selectedTicketType].price * quantity).toFixed(2);
-  };
-
-  const toggleWishlist = () => {
-    if (eventInWishlist) {
-      removeFromWishlist(event.id);
-    } else {
-      addToWishlist({
-        id: event.id,
-        title: event.title,
-        image: event.image,
-        date: event.date,
-        location: event.location,
-        category: event.category,
-        price: event.minPrice
-      });
-    }
-  };
-  
-  return (
-    <div className="min-h-screen flex flex-col" dir={isRTL ? "rtl" : "ltr"}>
-      <Navbar />
-      
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <div className="relative h-72 md:h-96 overflow-hidden">
-          <img 
-            src={event.image} 
-            alt={event.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
-            <div className="container mx-auto px-4 pb-8">
-              <Badge className="mb-2 bg-ticket-blue text-white">{event.category}</Badge>
-              <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">{event.title}</h1>
-              <div className="flex flex-wrap gap-4 text-white">
-                <div className="flex items-center">
-                  <Calendar size={18} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  <span>{event.date}</span>
-                </div>
-                <div className="flex items-center">
-                  <Clock size={18} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  <span>{event.time}</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin size={18} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  <span>{event.location}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Event Details */}
-            <div className="w-full md:w-2/3">
-              <div className="flex items-center gap-2 mb-4">
-                <Button variant="outline" size="sm" asChild>
-                  <Link to="/" className="flex items-center">
-                    <ArrowLeft size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                    {t.backToEvents}
-                  </Link>
-                </Button>
-                <Button variant="outline" size="sm">
-                  <Share2 size={16} className={`${isRTL ? 'ml-1' : 'mr-1'}`} />
-                  {t.shareEvent}
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  onClick={toggleWishlist}
-                  className={eventInWishlist ? "bg-rose-50 text-rose-500 border-rose-200" : ""}
-                >
-                  <Heart 
-                    size={16} 
-                    className={`${isRTL ? 'ml-1' : 'mr-1'} ${eventInWishlist ? "fill-rose-500" : ""}`} 
-                  />
-                  {eventInWishlist ? t.removeFromWishlist : t.addToWishlist}
-                </Button>
-              </div>
-              
-              <h2 className="text-2xl font-bold mb-4">{language === 'ar' ? 'وصف الحدث' : 'Event Description'}</h2>
-              <p className="text-gray-700 mb-6">{event.description}</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-sm font-medium text-gray-500 mb-1">{t.date}</h3>
-                  <p className="font-medium">{event.date}</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-sm font-medium text-gray-500 mb-1">{t.time}</h3>
-                  <p className="font-medium">{event.time}</p>
-                </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-sm font-medium text-gray-500 mb-1">{t.venue}</h3>
-                  <p className="font-medium">{event.location}</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Booking Section */}
-            <div className="w-full md:w-1/3">
-              <div className="border rounded-lg p-6 sticky top-4">
-                <h2 className="text-xl font-bold mb-4">{t.bookTickets}</h2>
-                
-                <div className="mb-4">
-                  <Label htmlFor="ticketType">{t.selectTickets}</Label>
-                  <div className="mt-2 space-y-2">
-                    {event.ticketLevels.map((ticket, index) => (
-                      <div 
-                        key={index} 
-                        className={`border rounded-md p-3 cursor-pointer transition-colors ${selectedTicketType === index ? 'border-ticket-blue bg-blue-50' : ''}`}
-                        onClick={() => setSelectedTicketType(index)}
-                      >
-                        <div className="flex justify-between">
-                          <span className="font-medium">{ticket.name}</span>
-                          <span className="text-ticket-blue font-bold">${ticket.price}</span>
-                        </div>
-                        <div className="text-xs text-gray-500 mt-1">
-                          {ticket.available} {t.ticketsAvailable}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <Label htmlFor="quantity">{t.quantity}</Label>
-                  <div className="flex items-center mt-1">
-                    <Button 
-                      variant="outline" 
-                      size="icon" 
-                      onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                      disabled={quantity <= 1}
-                    >
-                      -
-                    </Button>
-                    <Input
-                      id="quantity"
-                      type="number"
-                      min="1"
-                      max="10"
-                      value={quantity}
-                      onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-                      className="w-16 mx-2 text-center"
-                    />
-                    <Button 
-                      variant="outline" 
-                      size="icon" 
-                      onClick={() => setQuantity(quantity + 1)}
-                      disabled={quantity >= 10}
-                    >
-                      +
-                    </Button>
-                  </div>
-                </div>
-                
-                <div className="border-t pt-4 mb-4">
-                  <div className="flex justify-between mb-2">
-                    <span>{t.totalPrice}:</span>
-                    <span className="font-bold">${calculateTotal()}</span>
-                  </div>
-                </div>
-                
-                <Button 
-                  className="w-full bg-ticket-blue hover:bg-blue-700" 
-                  size="lg"
-                  onClick={handleBooking}
-                >
-                  <Ticket size={18} className={`${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  {t.proceedToCheckout}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
-  );
-};
-
-export default EventDetail;
+  },
+  // ADD MISSING FAMILY EVENTS WITH EXACT MATCHING IDS
+  {
+    id: "peppa-pig",
+    title: "Peppa Pig Live Show",
+    description: "Join Peppa Pig and her friends in this interactive live show perfect for young children and families. This charming theatrical production brings the beloved cartoon characters to life through colorful costumes, engaging songs, and playful storytelling. Children will be delighted as they sing along with familiar tunes and participate in the adventures of their favorite characters. The show's gentle pace, recognizable characters, and positive messages make it an ideal introduction to live theater for preschoolers, creating magical memories they'll treasure for years to come.",
+    date: "Nov 5, 2025",
+    time: "11:00 AM & 2:00 PM",
+    location: "The SSE Arena, London",
+    image: "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 29.99,
+    maxPrice: 59.99,
+    ticketLevels: [
+      { name: "VIP Meet & Greet", price: 59.99, available: 100 },
+      { name: "Premium Seats", price: 45.99, available: 300 },
+      { name: "Standard Admission", price: 29.99, available: 600 }
+    ]
+  },
+  {
+    id: "science-festival",
+    title: "Family Science Festival",
+    description: "Explore the wonders of science through hands-on experiments, interactive displays, and engaging demonstrations designed for curious minds of all ages. This educational festival features over 50 exhibits covering topics from astronomy and robotics to chemistry and biology, all presented in ways that make complex concepts accessible and exciting for children. Kids can build their own simple machines, observe chemical reactions, program robots, and much more under the guidance of enthusiastic scientists and educators. Special stage shows throughout the day add spectacular demonstrations of scientific principles, while take-home activity kits allow families to continue their scientific exploration at home.",
+    date: "Oct 22, 2025",
+    time: "9:00 AM - 5:00 PM",
+    location: "National Science Museum, Washington DC",
+    image: "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 24.99,
+    maxPrice: 49.99,
+    ticketLevels: [
+      { name: "Family Pass (4 people)", price: 49.99, available: 200 },
+      { name: "Adult Ticket", price: 32.99, available: 500 },
+      { name: "Child Ticket", price: 24.99, available: 800 }
+    ]
+  },
+  {
+    id: "lego-exhibition",
+    title: "LEGO Exhibition",
+    description: "Marvel at incredible LEGO sculptures and participate in building workshops at this interactive exhibition celebrating creativity through the world's favorite building blocks. Featuring over 100 jaw-dropping models created by master LEGO builders, including architectural wonders, fantasy worlds, and mechanical marvels containing millions of individual bricks. The exhibition includes dedicated building zones where visitors of all ages can create their own masterpieces, competitive building challenges with prizes, and specialized workshops taught by LEGO-certified professionals. Special themed areas include Star Wars, Harry Potter, and city planning sections, while a technology zone showcases robotics and coding using LEGO Mindstorms and Boost platforms.",
+    date: "Sep 18-25, 2025",
+    time: "10:00 AM - 6:00 PM",
+    location: "Convention Center, Chicago",
+    image: "https://images.unsplash.com/photo-1560961911-ba7ef651a56c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    minPrice: 19.99,
+    maxPrice: 69.99,
+    ticketLevels: [
+      { name: "VIP Experience", price: 69.99, available: 150 },
+      { name: "Family Pass", price: 49.99, available: 400 },
+      { name: "Standard Entry", price: 19.99, available: 800 }
+    ]
+  },
+  {
+    id: "zoo-adventure",
+    title: "Zoo Adventure Day",
+    description: "Get up close with amazing animals from around the world in this special zoo event featuring educational talks, feeding sessions, and hands-on encounters. This unique program offers families exclusive access to parts of the zoo normally off-limits to visitors, including behind-the-scenes glimpses of animal care facilities and conservation efforts. Participants will enjoy

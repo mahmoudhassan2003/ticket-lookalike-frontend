@@ -18,7 +18,7 @@ interface EventCardProps {
 }
 
 const EventCard = ({ id, title, date, location, image, category, isFeatured, fromText }: EventCardProps) => {
-  // Super detailed debugging for the event card routing
+  // Extra detailed debugging to help track event ID issues
   console.log(`Rendering EventCard: ID=${id}, Title=${title}, Category=${category}`);
   console.log(`Event route will be: /event/${id}`);
   
@@ -48,7 +48,7 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
             <Link 
               to={`/event/${id}`} 
               onClick={() => {
-                console.log(`Clicked event: ${title}`);
+                console.log(`Clicked event: ${title} with ID: ${id}`);
                 console.log(`Navigating to: /event/${id}`);
               }}
             >
