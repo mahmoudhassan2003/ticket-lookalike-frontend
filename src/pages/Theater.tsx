@@ -3,11 +3,6 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { Theater as TheaterIcon } from "lucide-react";
 import EventCard from '../components/EventCard';
 
@@ -18,7 +13,8 @@ const theaterEvents = [
     date: "Jun 15-30, 2025",
     location: "Victoria Palace Theatre, London",
     image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Theater"
+    category: "Theater",
+    price: 149.99
   },
   {
     id: "theater-phantom", // Unique ID
@@ -26,7 +22,8 @@ const theaterEvents = [
     date: "Jul 5-20, 2025",
     location: "Her Majesty's Theatre, London",
     image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Theater"
+    category: "Theater",
+    price: 129.99
   },
   {
     id: "theater-les-mis", // Unique ID
@@ -34,7 +31,8 @@ const theaterEvents = [
     date: "Aug 10-25, 2025",
     location: "Sondheim Theatre, London",
     image: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Theater"
+    category: "Theater",
+    price: 119.99
   },
   {
     id: "theater-lion-king", // Unique ID
@@ -42,7 +40,8 @@ const theaterEvents = [
     date: "Sep 5-20, 2025",
     location: "Lyceum Theatre, London",
     image: "https://images.unsplash.com/photo-1583004231508-e462638c634a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Theater"
+    category: "Theater",
+    price: 139.99
   },
   {
     id: "theater-wicked", // Unique ID
@@ -50,7 +49,8 @@ const theaterEvents = [
     date: "Oct 10-25, 2025",
     location: "Apollo Victoria Theatre, London",
     image: "https://images.unsplash.com/photo-1568085874298-f67cb4fbd92f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Theater"
+    category: "Theater",
+    price: 124.99
   },
   {
     id: "theater-matilda", // Unique ID
@@ -58,7 +58,8 @@ const theaterEvents = [
     date: "Nov 5-20, 2025",
     location: "Cambridge Theatre, London",
     image: "https://images.unsplash.com/photo-1553481187-be93c21490a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Theater"
+    category: "Theater",
+    price: 109.99
   }
 ];
 
@@ -96,6 +97,7 @@ const Theater = () => {
                   location={event.location}
                   image={event.image}
                   category={event.category}
+                  fromText={`From $${event.price}`}
                 />
               ))}
             </div>

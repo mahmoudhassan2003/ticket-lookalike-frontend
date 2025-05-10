@@ -66,11 +66,14 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
     }
   };
   
+  // Check if image exists or use a placeholder
+  const imageUrl = image || "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+  
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative h-48 overflow-hidden">
         <img 
-          src={image} 
+          src={imageUrl} 
           alt={title}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />

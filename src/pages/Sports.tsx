@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
-import { Trophy, Calendar } from "lucide-react";
+import { Trophy } from "lucide-react";
 import EventCard from '../components/EventCard';
 
 const sportsEvents = [
@@ -13,7 +13,8 @@ const sportsEvents = [
     date: "Aug 12, 2025",
     location: "Emirates Stadium, London",
     image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Sports"
+    category: "Sports",
+    price: 129.99
   },
   {
     id: "sports-nba", // Unique ID
@@ -21,7 +22,8 @@ const sportsEvents = [
     date: "Jun 4, 2025",
     location: "Madison Square Garden, New York",
     image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Sports"
+    category: "Sports",
+    price: 199.99
   },
   {
     id: "sports-wimbledon", // Unique ID
@@ -29,15 +31,8 @@ const sportsEvents = [
     date: "Jul 16, 2025",
     location: "All England Club, London",
     image: "https://images.unsplash.com/photo-1623068481021-099cc81cc8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Sports"
-  },
-  {
-    id: "sports-ucl", // Unique ID
-    title: "UEFA Champions League Final",
-    date: "May 31, 2025",
-    location: "Wembley Stadium, London",
-    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Sports"
+    category: "Sports",
+    price: 249.99
   },
   {
     id: "sports-f1", // Unique ID
@@ -45,15 +40,26 @@ const sportsEvents = [
     date: "May 25, 2025",
     location: "Circuit de Monaco, Monte Carlo",
     image: "https://images.unsplash.com/photo-1541439460834-4ab9a3dd8e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Sports"
+    category: "Sports",
+    price: 399.99
   },
   {
-    id: "sports-nfl", // Unique ID
-    title: "NFL International Series",
-    date: "Oct 19, 2025",
-    location: "Tottenham Hotspur Stadium, London",
+    id: "sports-ucl", // Unique ID
+    title: "UEFA Champions League Final",
+    date: "May 31, 2025",
+    location: "Wembley Stadium, London",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Sports",
+    price: 299.99
+  },
+  {
+    id: "sports-local", // Unique ID
+    title: "Local Sports Tournament",
+    date: "Aug 15-16, 2025",
+    location: "Community Sports Center",
     image: "https://images.unsplash.com/photo-1580748141549-71748dbe0bdc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    category: "Sports"
+    category: "Sports",
+    price: 49.99
   }
 ];
 
@@ -91,6 +97,7 @@ const Sports = () => {
                   location={event.location}
                   image={event.image}
                   category={event.category}
+                  fromText={`From $${event.price}`}
                 />
               ))}
             </div>

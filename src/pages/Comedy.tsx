@@ -3,11 +3,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CategoryNav from '../components/CategoryNav';
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Smile, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Smile } from "lucide-react";
 import EventCard from '../components/EventCard';
 
 const comedyEvents = [
@@ -17,8 +13,8 @@ const comedyEvents = [
     date: "Sep 3, 2025",
     location: "Madison Square Garden, New York",
     image: "/lovable-uploads/ce21b6df-d3ae-4cba-9271-fc0c96450673.png",
-    price: "$85",
-    category: "Comedy"
+    category: "Comedy",
+    price: 85.00
   },
   {
     id: "comedy-dave", // New unique ID
@@ -26,8 +22,8 @@ const comedyEvents = [
     date: "Oct 15, 2025",
     location: "The O2, London",
     image: "https://images.unsplash.com/photo-1585647347483-22b66260dfff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$95",
-    category: "Comedy"
+    category: "Comedy",
+    price: 95.00
   },
   {
     id: "comedy-trevor", // New unique ID
@@ -35,8 +31,8 @@ const comedyEvents = [
     date: "Nov 8, 2025",
     location: "Sydney Opera House, Australia",
     image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$75",
-    category: "Comedy"
+    category: "Comedy",
+    price: 75.00
   },
   {
     id: "comedy-mulaney", // New unique ID
@@ -44,26 +40,26 @@ const comedyEvents = [
     date: "Dec 1, 2025",
     location: "Radio City Music Hall, New York",
     image: "https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$80",
-    category: "Comedy"
-  },
-  {
-    id: "comedy-gervais", // New unique ID
-    title: "Ricky Gervais: SuperNature",
-    date: "Jan 20, 2026",
-    location: "Royal Albert Hall, London",
-    image: "https://images.unsplash.com/photo-1523251343397-9225e4cb6319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$90",
-    category: "Comedy"
+    category: "Comedy",
+    price: 80.00
   },
   {
     id: "comedy-schumer", // New unique ID
     title: "Amy Schumer Live",
     date: "Feb 14, 2026",
     location: "Hollywood Bowl, Los Angeles",
-    image: "https://images.unsplash.com/photo-1508252592163-5d3c3c559269?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "$70",
-    category: "Comedy"
+    image: "https://images.unsplash.com/photo-1523251343397-9225e4cb6319?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Comedy",
+    price: 70.00
+  },
+  {
+    id: "comedy-zoo", // New unique ID
+    title: "Zoo Adventure Day",
+    date: "Jul 22, 2025",
+    location: "San Diego Zoo, California",
+    image: "https://images.unsplash.com/photo-1503066375319-00fef66c3881?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Family",
+    price: 45.00
   }
 ];
 
@@ -101,6 +97,7 @@ const Comedy = () => {
                   location={event.location}
                   image={event.image}
                   category={event.category}
+                  fromText={`From $${event.price}`}
                 />
               ))}
             </div>
