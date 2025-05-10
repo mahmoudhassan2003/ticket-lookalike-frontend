@@ -38,14 +38,14 @@ const featuredEvents = [
     price: 150.00
   },
   {
-    id: "f2",  // This ID matches the one in Festivals.tsx
-    title: "Coachella Valley Music and Arts Festival",
-    date: "Apr 10-19, 2025",
-    location: "Empire Polo Club, Indio",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    id: "f5",  // Updated to match the entry in Festivals.tsx and EventDetail.tsx
+    title: "Ultra Music Festival",
+    date: "Mar 28-30, 2025",
+    location: "Miami, Florida",
+    image: "https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Festivals",
     isFeatured: true,
-    price: 499.00
+    price: 399.00
   }
 ];
 

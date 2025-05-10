@@ -15,6 +15,7 @@ const CheckoutButton = () => {
     try {
       // Simulate creating a Stripe checkout session
       console.log("Creating Stripe checkout session...");
+      console.log(`Processing ${cartItems.length} items for $${getTotalPrice().toFixed(2)}`);
       
       // In a real implementation, this would call a backend endpoint like:
       // const response = await fetch('/api/create-checkout-session', {
@@ -25,9 +26,12 @@ const CheckoutButton = () => {
       // const { sessionUrl } = await response.json();
       // window.location.href = sessionUrl;
       
-      // For now, simulate the checkout process
+      // For now, simulate the checkout process with detailed logging
       console.log("Cart items to be processed:", cartItems);
-      console.log("Total amount:", getTotalPrice());
+      cartItems.forEach((item, index) => {
+        console.log(`Item ${index + 1}: ${item.title} (${item.quantity} x $${item.price})`);
+      });
+      console.log(`Total amount: $${getTotalPrice().toFixed(2)}`);
       
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -36,7 +40,7 @@ const CheckoutButton = () => {
       console.log("Payment successfully processed with Stripe!");
       toast({
         title: "Payment successful!",
-        description: "Your order has been processed. Thank you for your purchase!",
+        description: `Your order for $${getTotalPrice().toFixed(2)} has been processed. Thank you for your purchase!`,
       });
       
       // Clear cart after successful checkout

@@ -533,6 +533,92 @@ const allEvents = [
       { name: "Premium Seats", price: 120, available: 250 },
       { name: "Standard Admission", price: 70, available: 700 }
     ]
+  },
+  // Festival events
+  {
+    id: "f1",
+    title: "Glastonbury Festival 2025",
+    description: "Experience the world's most famous music and performing arts festival. Held at Worthy Farm in Somerset, this iconic event features hundreds of musical performances across multiple stages, as well as theater, circus, cabaret, and other arts. With its rich history dating back to 1970, Glastonbury has become a cultural institution that showcases both established superstars and emerging talent in a unique festival atmosphere.",
+    date: "Jun 25-29, 2025",
+    time: "All Day",
+    location: "Worthy Farm, Somerset, UK",
+    image: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Festivals",
+    minPrice: 299.99,
+    maxPrice: 450.00,
+    ticketLevels: [
+      { name: "General Admission", price: 299.99, available: 10000 },
+      { name: "VIP Experience", price: 450.00, available: 2000 },
+      { name: "Camping Add-on", price: 75.00, available: 8000 }
+    ]
+  },
+  {
+    id: "f3",
+    title: "Tomorrowland 2025",
+    description: "Join the magical world of Tomorrowland, one of the biggest electronic dance music festivals in the world. This spectacular event transforms the grounds of Boom, Belgium into an elaborate fantasy world with incredible stage designs, world-class production, and performances from the best DJs and producers in electronic music. The festival is known for its community atmosphere where people from all over the globe unite to celebrate music, friendship, and life.",
+    date: "Jul 17-26, 2025",
+    time: "12:00 PM",
+    location: "Boom, Belgium",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Festivals",
+    minPrice: 375.50,
+    maxPrice: 695.00,
+    ticketLevels: [
+      { name: "Full Madness Pass", price: 375.50, available: 15000 },
+      { name: "Comfort Pass", price: 525.00, available: 5000 },
+      { name: "VIP Full Madness", price: 695.00, available: 2000 }
+    ]
+  },
+  {
+    id: "f4",
+    title: "Reading & Leeds Festival",
+    description: "Experience the twin festivals that take place simultaneously in Reading and Leeds, featuring some of the biggest names in rock, indie, punk, and electronic music. With a history spanning over 50 years, these festivals have become a rite of passage for music fans in the UK. Multiple stages showcase diverse acts ranging from established headliners to exciting newcomers, creating an unforgettable weekend of live music and festival culture.",
+    date: "Aug 22-24, 2025",
+    time: "11:00 AM",
+    location: "Reading & Leeds, UK",
+    image: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Festivals",
+    minPrice: 249.99,
+    maxPrice: 375.00,
+    ticketLevels: [
+      { name: "Weekend Ticket", price: 249.99, available: 20000 },
+      { name: "Weekend Ticket + Camping", price: 299.99, available: 15000 },
+      { name: "VIP Experience", price: 375.00, available: 3000 }
+    ]
+  },
+  {
+    id: "f5",
+    title: "Ultra Music Festival",
+    description: "Ultra Music Festival is the world's premier electronic music festival, bringing together the biggest DJs and producers for an unforgettable weekend in Miami. Featuring state-of-the-art production, multiple stages, and stunning visual effects, this festival showcases every genre of electronic music from house to techno, trance, drum and bass, and beyond. The electric atmosphere and Miami setting make Ultra a bucket-list event for dance music fans from around the globe.",
+    date: "Mar 28-30, 2025",
+    time: "4:00 PM",
+    location: "Miami, Florida",
+    image: "https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Festivals",
+    minPrice: 399.00,
+    maxPrice: 750.00,
+    ticketLevels: [
+      { name: "General Admission", price: 399.00, available: 30000 },
+      { name: "Premium General Admission", price: 525.00, available: 10000 },
+      { name: "VIP Experience", price: 750.00, available: 5000 }
+    ]
+  },
+  {
+    id: "f6",
+    title: "Burning Man",
+    description: "Burning Man is not just a festival but a temporary city and community that emerges in Nevada's Black Rock Desert. This unique event is dedicated to art, self-expression, and self-reliance, culminating in the burning of a large wooden effigy. Participants create elaborate art installations, mutant vehicles, and themed camps in the midst of the harsh desert environment. With no official entertainment or vendors, Burning Man operates on principles of gifting, decommodification, and radical self-reliance, creating an experience unlike any other event in the world.",
+    date: "Aug 24 - Sep 1, 2025",
+    time: "All Day",
+    location: "Black Rock Desert, Nevada",
+    image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Festivals",
+    minPrice: 475.00,
+    maxPrice: 1250.00,
+    ticketLevels: [
+      { name: "Main Sale Ticket", price: 475.00, available: 20000 },
+      { name: "FOMO Sale Ticket", price: 650.00, available: 5000 },
+      { name: "Vehicle Pass", price: 140.00, available: 15000 }
+    ]
   }
 ];
 
