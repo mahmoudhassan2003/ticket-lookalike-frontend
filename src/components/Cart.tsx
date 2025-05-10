@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { LanguageContext } from "@/contexts/LanguageContext";
+import CheckoutButton from './CheckoutButton';
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, getTotalItems, getTotalPrice } = useCart();
@@ -48,15 +49,6 @@ const Cart = () => {
   };
 
   const t = translations[language];
-
-  const handleCheckout = () => {
-    toast({
-      title: "Checkout initiated",
-      description: "Redirecting to payment page...",
-    });
-    // In a real app, this would redirect to checkout
-    setIsOpen(false);
-  };
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -143,13 +135,7 @@ const Cart = () => {
                   <span className="font-bold">${getTotalPrice().toFixed(2)}</span>
                 </div>
                 <div className="flex gap-2">
-                  <Button 
-                    variant="default" 
-                    className="w-full bg-ticket-blue hover:bg-blue-700"
-                    onClick={handleCheckout}
-                  >
-                    {t.checkout}
-                  </Button>
+                  <CheckoutButton />
                   <Button 
                     variant="outline" 
                     className="shrink-0"

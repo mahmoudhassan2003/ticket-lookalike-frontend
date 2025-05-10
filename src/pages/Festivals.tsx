@@ -16,7 +16,7 @@ const festivalEvents = [
     category: "Festivals"
   },
   {
-    id: "festival-coachella", // Unique ID
+    id: "f2", // Changed from festival-coachella to match expected format
     title: "Coachella Valley Music & Arts Festival",
     date: "Apr 10-19, 2025",
     location: "Indio, California",
@@ -24,7 +24,7 @@ const festivalEvents = [
     category: "Festivals"
   },
   {
-    id: "festival-tomorrowland", // Unique ID
+    id: "f3", // Changed from festival-tomorrowland to match expected format
     title: "Tomorrowland 2025",
     date: "Jul 17-26, 2025",
     location: "Boom, Belgium",
@@ -32,7 +32,7 @@ const festivalEvents = [
     category: "Festivals"
   },
   {
-    id: "festival-reading", // Unique ID
+    id: "f4", // Changed from festival-reading to match expected format
     title: "Reading & Leeds Festival",
     date: "Aug 22-24, 2025",
     location: "Reading & Leeds, UK",
@@ -40,7 +40,7 @@ const festivalEvents = [
     category: "Festivals"
   },
   {
-    id: "festival-ultra", // Unique ID
+    id: "f5", // Changed from festival-ultra to match expected format
     title: "Ultra Music Festival",
     date: "Mar 28-30, 2025",
     location: "Miami, Florida",
@@ -48,7 +48,7 @@ const festivalEvents = [
     category: "Festivals"
   },
   {
-    id: "festival-burning", // Unique ID
+    id: "f6", // Changed from festival-burning to match expected format
     title: "Burning Man",
     date: "Aug 24 - Sep 1, 2025",
     location: "Black Rock Desert, Nevada",

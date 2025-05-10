@@ -6,6 +6,7 @@ import { Calendar, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { useWishlist } from "@/contexts/WishlistContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface EventCardProps {
   id: string;
@@ -23,8 +24,38 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
   console.log(`Rendering EventCard: ID=${id}, Title=${title}, Category=${category}`);
   console.log(`Event route will be: /event/${id}`);
   
+  const { toast } = useToast();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const inWishlist = isInWishlist(id);
+  
   // Create a direct variable for the URL to ensure consistency
   const eventUrl = `/event/${id}`;
+  
+  const handleWishlistToggle = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigating to event detail
+    e.stopPropagation(); // Prevent event bubbling
+    
+    if (inWishlist) {
+      removeFromWishlist(id);
+      toast({
+        title: "Removed from wishlist",
+        description: `${title} has been removed from your wishlist`
+      });
+    } else {
+      addToWishlist({
+        id,
+        title,
+        date,
+        location,
+        image,
+        category
+      });
+      toast({
+        title: "Added to wishlist",
+        description: `${title} has been added to your wishlist`
+      });
+    }
+  };
   
   return (
     <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow">
@@ -34,6 +65,25 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
           alt={title}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
+        <button
+          onClick={handleWishlistToggle}
+          className={`absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors ${inWishlist ? 'text-red-500' : 'text-gray-400'}`}
+          aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill={inWishlist ? "currentColor" : "none"} 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+          </svg>
+        </button>
       </div>
       <CardContent className="p-4">
         <Badge variant="outline" className="mb-2">{category}</Badge>

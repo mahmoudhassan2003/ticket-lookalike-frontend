@@ -35,7 +35,7 @@ const featuredEvents = [
     isFeatured: true
   },
   {
-    id: "f1",
+    id: "f2", // Updated from f1 to f2 to match new IDs in Festivals.tsx
     title: "Coachella Valley Music and Arts Festival",
     date: "Apr 10-19, 2025",
     location: "Empire Polo Club, Indio",
