@@ -13,17 +13,29 @@ const CheckoutButton = () => {
   const handleCheckout = async () => {
     setIsLoading(true);
     try {
-      // In a real implementation, this would call your Stripe checkout endpoint
-      console.log("Starting checkout process...");
-      console.log("Cart items:", cartItems);
-      console.log("Total price:", getTotalPrice());
+      // Simulate creating a Stripe checkout session
+      console.log("Creating Stripe checkout session...");
       
-      // Simulate a successful Stripe checkout after a short delay
+      // In a real implementation, this would call a backend endpoint like:
+      // const response = await fetch('/api/create-checkout-session', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ items: cartItems })
+      // });
+      // const { sessionUrl } = await response.json();
+      // window.location.href = sessionUrl;
+      
+      // For now, simulate the checkout process
+      console.log("Cart items to be processed:", cartItems);
+      console.log("Total amount:", getTotalPrice());
+      
+      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      console.log("Payment processed successfully!");
+      // Simulate successful payment
+      console.log("Payment successfully processed with Stripe!");
       toast({
-        title: "Checkout successful!",
+        title: "Payment successful!",
         description: "Your order has been processed. Thank you for your purchase!",
       });
       
@@ -31,9 +43,9 @@ const CheckoutButton = () => {
       clearCart();
       setIsLoading(false);
     } catch (error) {
-      console.error('Checkout error:', error);
+      console.error('Stripe checkout error:', error);
       toast({
-        title: "Checkout failed",
+        title: "Payment failed",
         description: "There was an error processing your payment. Please try again.",
         variant: "destructive",
       });

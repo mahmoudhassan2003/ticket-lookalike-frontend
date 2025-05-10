@@ -42,8 +42,13 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
         description: `${title} has been removed from your wishlist`
       });
     } else {
-      // Add a default price value when not provided
-      const defaultPrice = 29.99;
+      // Extract price from fromText or use a default price
+      const price = fromText 
+        ? parseFloat(fromText.replace(/[^0-9.]/g, '')) 
+        : 29.99;
+      
+      console.log(`Adding to wishlist with price: ${price}`);
+      
       addToWishlist({
         id,
         title,
@@ -51,8 +56,9 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
         location,
         image,
         category,
-        price: fromText ? parseFloat(fromText.replace(/[^0-9.]/g, '')) : defaultPrice
+        price: price
       });
+      
       toast({
         title: "Added to wishlist",
         description: `${title} has been added to your wishlist`
