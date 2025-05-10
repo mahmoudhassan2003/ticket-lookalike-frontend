@@ -14,20 +14,27 @@ const CheckoutButton = () => {
     setIsLoading(true);
     try {
       // In a real implementation, this would call your Stripe checkout endpoint
-      // For now, we'll simulate a successful checkout after a short delay
-      setTimeout(() => {
-        toast({
-          title: "Checkout successful!",
-          description: "Your order has been processed",
-        });
-        clearCart();
-        setIsLoading(false);
-      }, 2000);
+      console.log("Starting checkout process...");
+      console.log("Cart items:", cartItems);
+      console.log("Total price:", getTotalPrice());
+      
+      // Simulate a successful Stripe checkout after a short delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      console.log("Payment processed successfully!");
+      toast({
+        title: "Checkout successful!",
+        description: "Your order has been processed. Thank you for your purchase!",
+      });
+      
+      // Clear cart after successful checkout
+      clearCart();
+      setIsLoading(false);
     } catch (error) {
       console.error('Checkout error:', error);
       toast({
         title: "Checkout failed",
-        description: "There was an error processing your payment",
+        description: "There was an error processing your payment. Please try again.",
         variant: "destructive",
       });
       setIsLoading(false);
@@ -43,7 +50,7 @@ const CheckoutButton = () => {
       {isLoading ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Processing...
+          Processing Payment...
         </>
       ) : (
         <>

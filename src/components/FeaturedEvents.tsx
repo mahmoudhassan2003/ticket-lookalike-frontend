@@ -14,7 +14,8 @@ const featuredEvents = [
     location: "SoFi Stadium, Los Angeles",
     image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Concerts",
-    isFeatured: true
+    isFeatured: true,
+    price: 89.99
   },
   {
     id: "s1",
@@ -23,7 +24,8 @@ const featuredEvents = [
     location: "TD Garden, Boston",
     image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Sports",
-    isFeatured: true
+    isFeatured: true,
+    price: 120.00
   },
   {
     id: "t1",
@@ -32,16 +34,18 @@ const featuredEvents = [
     location: "Richard Rodgers Theatre, New York",
     image: "https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Theater",
-    isFeatured: true
+    isFeatured: true,
+    price: 150.00
   },
   {
-    id: "f2", // Updated from f1 to f2 to match new IDs in Festivals.tsx
+    id: "f2",  // This ID matches the one in Festivals.tsx
     title: "Coachella Valley Music and Arts Festival",
     date: "Apr 10-19, 2025",
     location: "Empire Polo Club, Indio",
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     category: "Festivals",
-    isFeatured: true
+    isFeatured: true,
+    price: 499.00
   }
 ];
 
@@ -59,7 +63,10 @@ const FeaturedEvents = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {featuredEvents.map((event) => (
-            <EventCard key={event.id} {...event} />
+            <EventCard key={event.id} 
+              {...event} 
+              fromText={`From $${event.price}`}
+            />
           ))}
         </div>
       </div>

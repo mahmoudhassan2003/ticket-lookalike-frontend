@@ -91,7 +91,7 @@ const Wishlist = () => {
                   <span>{item.location}</span>
                 </div>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-ticket-blue font-medium">From ${item.price}</span>
+                  <span className="text-ticket-blue font-medium">${item.price?.toFixed(2) || '0.00'}</span>
                   <Button 
                     variant="outline" 
                     size="sm" 

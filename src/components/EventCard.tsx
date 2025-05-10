@@ -42,13 +42,16 @@ const EventCard = ({ id, title, date, location, image, category, isFeatured, fro
         description: `${title} has been removed from your wishlist`
       });
     } else {
+      // Add a default price value when not provided
+      const defaultPrice = 29.99;
       addToWishlist({
         id,
         title,
         date,
         location,
         image,
-        category
+        category,
+        price: fromText ? parseFloat(fromText.replace(/[^0-9.]/g, '')) : defaultPrice
       });
       toast({
         title: "Added to wishlist",
