@@ -28,6 +28,8 @@ import OrderStatus from "./pages/OrderStatus";
 import Shipping from "./pages/Shipping";
 import Returns from "./pages/Returns";
 import FAQ from "./pages/FAQ";
+import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { CartProvider, useCart } from "./contexts/CartContext";
 import { WishlistProvider } from "./contexts/WishlistContext";
@@ -58,6 +60,10 @@ const App = () => (
                   <Route path="/near-me" element={<NearMe />} />
                   <Route path="/event/:eventId" element={<EventDetail />} />
                   <Route path="/search-results" element={<SearchResults />} />
+                  
+                  {/* Payment Routes */}
+                  <Route path="/payment" element={<Payment />} />
+                  <Route path="/payment-success" element={<PaymentSuccess />} />
                   
                   {/* Redirect legacy URLs if needed */}
                   <Route path="/event/undefined" element={<Navigate to="/404" replace />} />
